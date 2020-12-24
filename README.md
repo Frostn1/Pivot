@@ -3,4 +3,5 @@
  
 * Designed to be like a low level assembly language,
  but with modern tech, style, with C compile and run speed.
- Including modern ideas and concepts.
+ 
+* Including modern ideas and concepts.

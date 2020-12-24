@@ -1,0 +1,11 @@
+from {io}
+
+int main()
+{
+	int num = 6;
+	ax = 5;
+	bx = ax;
+	bx = ax + bx + ax;
+	print ax;
+	num = read;	
+}
