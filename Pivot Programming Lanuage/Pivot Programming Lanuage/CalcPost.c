@@ -1,5 +1,5 @@
 #include "CalcPost.h"
-char** Calculate(char** exp)
+Result* Calculate(char** exp,int size)
 {
 	char* operand1;
 	char* operand2;
@@ -10,15 +10,16 @@ char** Calculate(char** exp)
 	float op1f;
 	float op2f;
 
-	int op1Flag;//0 - Int, 1 - Float
-	int op2Flag;//0 - Int, 1 - Float
-
 	float opResult;
 
+	int len = 0;
+	int temp;
 	Stack* s = (Stack*)malloc(sizeof(Stack));
-	char* buffer = (char*)malloc(FLOATMAX*sizeof(char));
-	char** result = (char*)malloc(sizeof(exp));
-	for (int i = 0; i < sizeof(exp); i++)
+	InitStack(s);
+	Result* capsule = (Result*)malloc(sizeof(Result));
+	char* buffer = (char*)malloc(FLOATMAX * sizeof(char));
+	char* result = (char*)malloc(STACKSIZE * sizeof(char));
+	for (int i = 0; i < size; i++)
 	{
 		if (isOperator(exp[i]))
 		{
@@ -31,7 +32,6 @@ char** Calculate(char** exp)
 			if (strchr(operand1, '.'))
 			{
 				op1f = toFloat(operand1);
-				op1Flag = 1;
 			}
 			else
 			{
@@ -40,15 +40,53 @@ char** Calculate(char** exp)
 			if (strchr(operand2, '.'))
 			{
 				op2f = toFloat(operand2);
-				op2Flag = 1;
 			}
 			else
 			{
-				op2 = toInt(operand1);
+				op2 = toInt(operand2);
+			}
+			if (strcmp(exp[i], "+") == 0)
+			{
+				opResult = op1 + op2 + op1f + op2f;
+				
+			}
+			else if (strcmp(exp[i], "-") == 0)
+			{
+				opResult = (op1 + op1f) - (op2 + op2f);
+			}
+			else if (strcmp(exp[i], "*") == 0)
+			{
+				opResult = (op1 + op1f) * (op2 + op2f);
+			}
+			else if (strcmp(exp[i], "/") == 0)
+			{
+				opResult = (op1 + op1f) / (op2 + op2f);
+			}
+			
+			if (opResult - (int)opResult)//Float
+			{
+				len = 2;
+				//temp = opResult - (int)opResult;
+				//temp = (int)(temp * 100);
+				
+				temp = (int)opResult;
+				while (temp != 0) {
+					temp /= 10;     // n = n/10
+					++len;
+				}
+
+			}
+			else//Int
+			{
+				len = 0;
+				temp = (int)opResult;
+				while (temp != 0) {
+					temp /= 10;     // n = n/10
+					++len;
+				}
 			}
 
-			opResult = op1 + op2 + op1f + op2f;
-			gcvt(opResult, sizeof(opResult) / sizeof(float), buffer);
+			_gcvt(opResult, len, buffer);
 			Push(s, buffer);
 		}
 		else
@@ -57,31 +95,38 @@ char** Calculate(char** exp)
 		}
 		
 	}
-	return NULL;
+	result = Pop(s);
+	if (strchr(result, '.'))
+	{
+		capsule->resultF = toFloat(result);
+		capsule->sel = 1;
+	}
+	else
+	{
+		capsule->resultI = toInt(result);
+		capsule->sel = 0;
+	}
+	return capsule;
 }
 
 int isOperator(char tempExp[])
 {
-	if (sizeof(tempExp) / sizeof(tempExp[0]) != 1)
+	
+	if (tempExp[0] != '+' && tempExp[0] != '-' && tempExp[0] != '*' && tempExp[0] != '/')
 	{
 		return 0;
 	}
-	else
-	{
-		if (tempExp[0] != '+' && tempExp[0] != '-' && tempExp[0] != '*' && tempExp[0] != '/')
-		{
-			return 0;
-		}
-	}
+	
 	return 1;
 }
 
 float toFloat(char tempExp[])
 {
-	return atof(tempExp);
+	return (float)atof(tempExp);
 }
 
 int toInt(char tempExp[])
 {
 	return atoi(tempExp);
 }
+
