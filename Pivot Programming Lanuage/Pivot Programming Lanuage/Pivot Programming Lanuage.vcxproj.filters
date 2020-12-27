@@ -28,6 +28,12 @@
     <Filter Include="Header Files\Calc">
       <UniqueIdentifier>{3c0ffe49-bbf0-42a1-a265-082e33b2f4fe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Helpers">
+      <UniqueIdentifier>{11d0cd0c-8735-4f7b-a548-91088f42b50c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Helpers">
+      <UniqueIdentifier>{4e81baf0-01c5-40b2-bcf9-0ce68f2c0943}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\README.md">
@@ -47,6 +53,9 @@
     <ClCompile Include="ConInPost.c">
       <Filter>Source Files\Calc</Filter>
     </ClCompile>
+    <ClCompile Include="Helper.c">
+      <Filter>Source Files\Helpers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stack.h">
@@ -57,6 +66,9 @@
     </ClInclude>
     <ClInclude Include="ConInPost.h">
       <Filter>Header Files\Calc</Filter>
+    </ClInclude>
+    <ClInclude Include="Helper.h">
+      <Filter>Header Files\Helpers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -9,7 +9,7 @@ char** Convert(char** exp, int size)
 	for (int i = 0; i < size; i++)
 	{
 		buffer[bufferCounter] = (char*)malloc(sizeof(exp[i]));
-		if (!isOperator1(exp[i]))
+		if (!isOperator(exp[i]))
 		{
 			buffer[bufferCounter++] = exp[i];
 		}
@@ -18,6 +18,18 @@ char** Convert(char** exp, int size)
 			if (isEmpty(s))
 			{
 				Push(s, exp[i]);
+			}
+			else if (exp[i][0] == OPEN_BRACKET)
+			{
+				Push(s, exp[i]);
+			}
+			else if (exp[i][0] == CLOSE_BRACKET)
+			{
+				while (Peek(s)[0] != OPEN_BRACKET)
+				{
+					buffer[bufferCounter++] = Pop(s);
+				}
+				Pop(s);
 			}
 			else if (isHigherPrio(exp[i], Peek(s)))
 			{
@@ -40,30 +52,4 @@ char** Convert(char** exp, int size)
 		}
 	}
     return buffer;
-}
-
-int isHigherPrio(char* firstOp, char* secOp)
-{
-	if ((firstOp[0] == '*' || firstOp[0] == '/') && (secOp[0] == '+' || secOp[0] == '-'))
-	{
-		return 1;
-	}
-	else if((firstOp[0] == '+' || firstOp[0] == '-') && (secOp[0] == '*' || secOp[0] == '/'))
-	{
-		return 0;
-	}
-	return 0;
-}
-
-
-int isOperator1(char tempExp[])
-{
-	
-	
-	if (tempExp[0] != '+' && tempExp[0] != '-' && tempExp[0] != '*' && tempExp[0] != '/')
-	{
-		return 0;
-	}
-	
-	return 1;
 }

@@ -36,20 +36,24 @@ int main()
 
 Result* convertTest()
 {
-	char** buffer = (char**)malloc(5 * sizeof(char*));
+	char** buffer = (char**)malloc(7 * sizeof(char*));
 	buffer[0] = (char*)malloc(sizeof(char) * 2);
 	buffer[1] = (char*)malloc(sizeof(char) * 1);
-	buffer[2] = (char*)malloc(sizeof(char) * 1);
+	buffer[2] = (char*)malloc(sizeof(char) * 2);
 	buffer[3] = (char*)malloc(sizeof(char) * 1);
 	buffer[4] = (char*)malloc(sizeof(char) * 1);
+	buffer[5] = (char*)malloc(sizeof(char) * 1);
+	buffer[6] = (char*)malloc(sizeof(char) * 1);
 
-	buffer[0] = "1.2";
-	buffer[1] = "+";
-	buffer[2] = "2";
-	buffer[3] = "*";
-	buffer[4] = "3";
+	buffer[0] = "(";
+	buffer[1] = "1";
+	buffer[2] = "+";
+	buffer[3] = "2";
+	buffer[4] = ")";
+	buffer[5] = "*";
+	buffer[6] = "3";
 
-	buffer = Convert(buffer, 5);
+	buffer = Convert(buffer, 7);
 
 	return Calculate(buffer, 5);
 

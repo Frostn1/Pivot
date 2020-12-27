@@ -144,11 +144,13 @@
   <ItemGroup>
     <ClInclude Include="CalcPost.h" />
     <ClInclude Include="ConInPost.h" />
+    <ClInclude Include="Helper.h" />
     <ClInclude Include="Stack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CalcPost.c" />
     <ClCompile Include="ConInPost.c" />
+    <ClCompile Include="Helper.c" />
     <ClCompile Include="Source.c" />
     <ClCompile Include="Stack.c" />
   </ItemGroup>

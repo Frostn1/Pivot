@@ -2,8 +2,10 @@
 #define CONINPOST
 
 #include "Stack.h"
+#include "Helper.h"
 
-
+#define OPEN_BRACKET '('
+#define CLOSE_BRACKET ')'
 // ConInPost file
 // Convert Infix to Postfix
 // Con - Convert
@@ -15,8 +17,7 @@
 char** Convert(char** exp,int size);
 
 //Helper Functions
-int isOperator1(char tempExp[]);
-int isHigherPrio(char* firstOp, char* secOp);
+
 
 #endif // !CONINPOST
 

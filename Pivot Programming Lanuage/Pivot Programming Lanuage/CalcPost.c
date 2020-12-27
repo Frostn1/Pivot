@@ -6,7 +6,7 @@ Result* Calculate(char** exp,int size)
 
 	int op1;
 	int op2;
-
+	
 	float op1f;
 	float op2f;
 
@@ -27,8 +27,8 @@ Result* Calculate(char** exp,int size)
 			op2 = 0;
 			op1f = 0;
 			op2f = 0;
-			operand1 = Pop(s);
 			operand2 = Pop(s);
+			operand1 = Pop(s);
 			if (strchr(operand1, '.'))
 			{
 				op1f = toFloat(operand1);
@@ -61,6 +61,15 @@ Result* Calculate(char** exp,int size)
 			else if (strcmp(exp[i], "/") == 0)
 			{
 				opResult = (op1 + op1f) / (op2 + op2f);
+			}
+			else if (strcmp(exp[i], "%") == 0)
+			{
+				if (op1f != 0 || op2f != 0)
+				{
+					printf(_OUT_TO_STDERR, "Module Error: Cant module floating point numbers.");
+					exit(0);
+				}
+				opResult = (op1) % (op2);
 			}
 			
 			if (opResult - (int)opResult)//Float
@@ -109,24 +118,7 @@ Result* Calculate(char** exp,int size)
 	return capsule;
 }
 
-int isOperator(char tempExp[])
-{
-	
-	if (tempExp[0] != '+' && tempExp[0] != '-' && tempExp[0] != '*' && tempExp[0] != '/')
-	{
-		return 0;
-	}
-	
-	return 1;
-}
 
-float toFloat(char tempExp[])
-{
-	return (float)atof(tempExp);
-}
 
-int toInt(char tempExp[])
-{
-	return atoi(tempExp);
-}
+
 

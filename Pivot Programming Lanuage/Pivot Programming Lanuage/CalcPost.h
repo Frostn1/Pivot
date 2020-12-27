@@ -3,7 +3,7 @@
 
 #ifndef CALCPOST_H
 #define CALCPOST_H
-
+#include "Helper.h"
 #include "Stack.h"
 #include <stdlib.h>
 
@@ -21,8 +21,5 @@ Result* Calculate(char **exp);
 
 
 //Helper Functions
-int isOperator(char tempExp[]);
-float toFloat(char tempExp[]);
-int toInt(char tempExp[]);
 
 #endif CALCPOST_H
