@@ -4,7 +4,7 @@
 #include "CalcPost.h"
 Result* convertTest();
 
-int main()
+/*int main()
 {
 	Result* caps = (Result*)malloc(sizeof(Result));
 	caps = convertTest();
@@ -30,9 +30,9 @@ int main()
 	printf("%s", retu);
 	retu = Pop(s);
 	printf("%s", retu);
-	printf("%d", sizeof(letter) / sizeof(letter[0]));*/
+	printf("%d", sizeof(letter) / sizeof(letter[0]));
 	return 0;
-}
+}*/
 
 Result* convertTest()
 {
@@ -45,13 +45,13 @@ Result* convertTest()
 	buffer[5] = (char*)malloc(sizeof(char) * 1);
 	buffer[6] = (char*)malloc(sizeof(char) * 1);
 
-	buffer[0] = "(";
-	buffer[1] = "1";
-	buffer[2] = "+";
-	buffer[3] = "2";
-	buffer[4] = ")";
-	buffer[5] = "*";
-	buffer[6] = "3";
+	buffer[0] = "3";
+	buffer[1] = "*";
+	buffer[2] = "(";
+	buffer[3] = "1";
+	buffer[4] = "+";
+	buffer[5] = "2";
+	buffer[6] = ")";
 
 	buffer = Convert(buffer, 7);
 

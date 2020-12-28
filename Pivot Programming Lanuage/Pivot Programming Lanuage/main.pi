@@ -1,4 +1,4 @@
-from {io}
+from {io
 
 int main()
 {
@@ -7,5 +7,6 @@ int main()
 	bx = ax;
 	bx = ax + bx + ax;
 	print ax;
-	num = read();	
+	num = read();
+	return inf;	
 }

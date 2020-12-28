@@ -13,26 +13,44 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Stack">
-      <UniqueIdentifier>{1384402c-3591-4fc0-b6a9-ff33039e5c48}</UniqueIdentifier>
+    <Filter Include="Source Files\Math">
+      <UniqueIdentifier>{2d71743c-6acc-4bf4-9338-15e616e5cda8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Stack">
-      <UniqueIdentifier>{a094366d-4cd4-4aa5-b0de-a9713d5fdb58}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Main">
-      <UniqueIdentifier>{97c615c0-1f2b-4ff3-becc-e4ea0d9c8b0c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Calc">
+    <Filter Include="Source Files\Math\Calc">
       <UniqueIdentifier>{27150a63-33de-40cb-8773-b43f1cceb968}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Calc">
-      <UniqueIdentifier>{3c0ffe49-bbf0-42a1-a265-082e33b2f4fe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Helpers">
+    <Filter Include="Source Files\Math\Helpers">
       <UniqueIdentifier>{11d0cd0c-8735-4f7b-a548-91088f42b50c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Helpers">
+    <Filter Include="Source Files\Math\Main">
+      <UniqueIdentifier>{97c615c0-1f2b-4ff3-becc-e4ea0d9c8b0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Math\Stack">
+      <UniqueIdentifier>{1384402c-3591-4fc0-b6a9-ff33039e5c48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Math">
+      <UniqueIdentifier>{ac46113f-d937-4c47-9fad-4ea0589d854f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Math\Calc">
+      <UniqueIdentifier>{3c0ffe49-bbf0-42a1-a265-082e33b2f4fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Math\Helpers">
       <UniqueIdentifier>{4e81baf0-01c5-40b2-bcf9-0ce68f2c0943}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Math\Stack">
+      <UniqueIdentifier>{a094366d-4cd4-4aa5-b0de-a9713d5fdb58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Lexer">
+      <UniqueIdentifier>{c454d2c0-b4ff-4a39-8552-807e67253c7b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Lexer">
+      <UniqueIdentifier>{fdead371-6470-46b0-8faa-0801418db5cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Lexer\KeyWords">
+      <UniqueIdentifier>{316b77ca-7850-4868-b1f2-f7960459193c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Lexer\KeyWords">
+      <UniqueIdentifier>{40b2e526-2cef-4cec-ae4b-5f8891fb2f93}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -42,33 +60,54 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Stack.c">
-      <Filter>Source Files\Stack</Filter>
+      <Filter>Source Files\Math\Stack</Filter>
     </ClCompile>
     <ClCompile Include="Source.c">
-      <Filter>Source Files\Main</Filter>
+      <Filter>Source Files\Math\Main</Filter>
     </ClCompile>
     <ClCompile Include="CalcPost.c">
-      <Filter>Source Files\Calc</Filter>
+      <Filter>Source Files\Math\Calc</Filter>
     </ClCompile>
     <ClCompile Include="ConInPost.c">
-      <Filter>Source Files\Calc</Filter>
+      <Filter>Source Files\Math\Calc</Filter>
     </ClCompile>
     <ClCompile Include="Helper.c">
-      <Filter>Source Files\Helpers</Filter>
+      <Filter>Source Files\Math\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyWord.c">
+      <Filter>Source Files\Lexer\KeyWords</Filter>
+    </ClCompile>
+    <ClCompile Include="Chunk.c">
+      <Filter>Source Files\Lexer\KeyWords</Filter>
+    </ClCompile>
+    <ClCompile Include="Tokenizer.c">
+      <Filter>Source Files\Lexer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source1.c">
+      <Filter>Source Files\Lexer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stack.h">
-      <Filter>Header Files\Stack</Filter>
+      <Filter>Header Files\Math\Stack</Filter>
     </ClInclude>
     <ClInclude Include="CalcPost.h">
-      <Filter>Header Files\Calc</Filter>
+      <Filter>Header Files\Math\Calc</Filter>
     </ClInclude>
     <ClInclude Include="ConInPost.h">
-      <Filter>Header Files\Calc</Filter>
+      <Filter>Header Files\Math\Calc</Filter>
     </ClInclude>
     <ClInclude Include="Helper.h">
-      <Filter>Header Files\Helpers</Filter>
+      <Filter>Header Files\Math\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyWord.h">
+      <Filter>Header Files\Lexer\KeyWords</Filter>
+    </ClInclude>
+    <ClInclude Include="Chunk.h">
+      <Filter>Header Files\Lexer\KeyWords</Filter>
+    </ClInclude>
+    <ClInclude Include="Tokenizer.h">
+      <Filter>Header Files\Lexer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
