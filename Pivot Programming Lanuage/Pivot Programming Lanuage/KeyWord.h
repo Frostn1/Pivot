@@ -37,6 +37,13 @@ typedef struct KeywordList
 	int inLevel;
 }KeywordList;
 
+
+typedef struct Parameter
+{
+	char* varName;
+	char* varType;
+}Parameter;
+
 #endif // !KEYWORD_H
 
 

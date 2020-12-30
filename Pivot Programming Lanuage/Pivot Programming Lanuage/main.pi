@@ -1,8 +1,8 @@
 from {io}
 from {img}
 
-func main() int
-{
+func main(int num) int {
+
 	int num = 6;
 	ax = 5;
 	bx = ax;
