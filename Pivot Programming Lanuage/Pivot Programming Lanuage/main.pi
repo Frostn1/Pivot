@@ -1,6 +1,7 @@
-from {io
+from {io}
+from {img}
 
-int main()
+func main  ) int
 {
 	int num = 6;
 	ax = 5;

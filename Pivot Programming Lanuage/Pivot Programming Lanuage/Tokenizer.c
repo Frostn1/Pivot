@@ -16,57 +16,116 @@ void Process(char* fileName)
 }
 int Tokenize(char* rawCode, unsigned long size)
 {
+	KeywordList* lineList = (Keyword*)malloc(sizeof(KeywordList));
+	lineList->list = (Keyword*)malloc(sizeof(Keyword) * MAXTOKENS);
+	lineList->list[0] = (Keyword*)malloc(sizeof(Keyword) * MAXTOKENS);
+	lineList->level = 0;
+	lineList->inLevel = 0;
 	unsigned int col = 0, row = 0;
 	int isEmbeded = 0;
 	for (int i = 0; i < size; i++)
 	{
 		if (See(rawCode, i) == 'f' && PeekS(rawCode, i, 1) == 'r' && PeekS(rawCode, i, 2) == 'o' && PeekS(rawCode, i, 3) == 'm')
 		{
+			int counter = 4, addressCounter = 0;
+			char* fromAddress = (char*)malloc(sizeof(char) * MAXFROMSIZE);
+			if (PeekS(rawCode, i, counter) != SPACE)
+				Throw("From Error", "Missing space after from", row,col);
+			else
+				counter++;
+			while (PeekS(rawCode, i, counter) == SPACE)
+				counter++;
+			counter++;
+			if(PeekS(rawCode,i,counter-2) != OPENBRACKET_L && PeekS(rawCode, i, counter - 1) != OPENBRACKET_L)
+				Throw("From Error", "Missing '{'", row, col);
+			while (PeekS(rawCode, i, addressCounter + counter) != CLOSEBRACKET_L)
+			{
+				fromAddress[addressCounter] = PeekS(rawCode, i, counter + addressCounter);
+				if (addressCounter + 1 > MAXFROMSIZE)
+					Throw("From Error", "From address overflowed", row,col);
+				if (PeekS(rawCode, i, addressCounter + counter) == '\n')
+					Throw("From Error", "Missing '}'", row,col);
+
+				addressCounter++;
+				//counter++;
+			}
+			fromAddress[addressCounter] = '\0';
+			//Process(fromAddress);
+			printf("%s", fromAddress);
+
+			i += addressCounter + counter;
 			Keyword* kw = (Keyword*)malloc(sizeof(Keyword));
 			kw->column = col;
 			kw->row = row;
 			kw->name = FROM;
-			int counter = 4, addressCounter = 0;
-			char* fromAddress = (char*)malloc(sizeof(char) * MAXFROMSIZE);
-			if (PeekS(rawCode, i, counter) != ' ')
-				Throw("From Error", "Missing space after from",kw);
+			lineList->list[lineList->level][lineList->inLevel++] = *kw;
+			kw->data = (char*)malloc(sizeof(fromAddress));
+			strcpy(kw->data, fromAddress);
+			kw = (Keyword*)malloc(sizeof(Keyword));
+			kw->column = col+counter;
+			kw->row = row;
+			kw->name = OPENBRACKET;
+			kw->data = OPENBRACKET_L;
+			lineList->list[lineList->level][lineList->inLevel++] = *kw;
+			kw = (Keyword*)malloc(sizeof(Keyword));
+			kw->column = col + counter + addressCounter;
+			kw->row = row;
+			kw->name = CLOSEBRACKET;
+			kw->data = CLOSEBRACKET_L;
+			lineList->list[lineList->level][lineList->inLevel++] = *kw;
+
+
+
+		}
+		else if (See(rawCode, i) == 'f' && PeekS(rawCode, i, 1) == 'u' && PeekS(rawCode, i, 2) == 'n' && PeekS(rawCode, i, 3) == 'c')
+		{
+			Keyword* kw = (Keyword*)malloc(sizeof(Keyword));
+			kw->column = col;
+			kw->row = row;
+			kw->name = FUNC;
+			int counter = 4, funcCounter = 0;
+			char* funcName = (char*)malloc(sizeof(char) * MAXFUNCSIZE);
+			if (PeekS(rawCode, i, counter) != SPACE)
+				Throw("Func Error", "Missing space after func",row,col);
 			else
 				counter++;
-			while (PeekS(rawCode, i, counter) == ' ')
+			while (PeekS(rawCode, i, counter) == SPACE)
 				counter++;
-			counter++;
-			while (PeekS(rawCode, i, counter) != '}')
+			
+			while (PeekS(rawCode, i, funcCounter + counter) != OPENPAREN_L && PeekS(rawCode, i, funcCounter + counter) != SPACE && PeekS(rawCode, i, funcCounter + counter) != CLOSEPAREN_L)
 			{
-				
-				fromAddress[addressCounter] = PeekS(rawCode, i, counter);
-				if (PeekS(rawCode, i,addressCounter+counter) == '\n')
-					Throw("From Error", "Missing '}'", kw);
-				if (addressCounter + 1 > MAXFROMSIZE)
-					Throw("From Error", "From address overflowed", kw);
-				addressCounter++;
-				counter++;
+				funcName[funcCounter] = PeekS(rawCode, i, counter + funcCounter);
+				if (funcCounter + 1 > MAXFUNCSIZE)
+					Throw("Func Error", "Func name overflowed", row,col);
+				if (PeekS(rawCode, i, funcCounter + counter) == '\n')
+					Throw("Func Error", "Missing ')'", row,col);
+				funcCounter++;
 			}
-			fromAddress[addressCounter] = '\0';
-			printf("%s", fromAddress);
+			funcName[funcCounter] = '\0';
+			while (PeekS(rawCode, i, counter+ funcCounter) == SPACE)
+				counter++;
+			if (PeekS(rawCode, i, counter + funcCounter) != OPENPAREN_L)
+				Throw("Func Error", "Missing '('", row, col);
+			
 		}
 
-
 		col++;
-		if (!isEmbeded && See(rawCode, i) == '\\' && PeekS(rawCode, i, 1))
+		if (!isEmbeded && See(rawCode, i) == '\n')
 		{
 			row++;
 			col = 0;
+			lineList->inLevel = 0;
+			lineList->list[++lineList->level] = (Keyword*)malloc(sizeof(Keyword) * MAXTOKENS);
 		}
 
-
 	}
-	
 	return 1;
+
 }
 
-void Throw(char* errorType, char* errorMsg,Keyword* kw)
+void Throw(char* errorType, char* errorMsg, int row, int col)
 {
-	printf("< %s >\n[ %s ] on %d %d", errorType, errorMsg, kw->row, kw->column);
+	printf("< %s >\n[ %s ] on %d %d", errorType, errorMsg, row, col);
 	exit(0);
 }
 

@@ -4,7 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>	
 #include "KeyWord.h"
-#define MAXFROMSIZE 10
+#define MAXLINES 256
+#define MAXTOKENS 10
+
 
 //Main functions
 void Process(char* fileName);
@@ -13,7 +15,7 @@ void Process(char* fileName);
 int Tokenize(char* rawCode, unsigned long size);
 
 //Errors
-void Throw(char* errorType, char* errorMsg, Keyword* kw);
+void Throw(char* errorType, char* errorMsg, int row, int col);
 //Helpers
 
 //File
