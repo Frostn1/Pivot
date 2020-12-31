@@ -1,6 +1,8 @@
 #ifndef KEYWORD_H
 #define KEYWORD_H
 
+#define MAXTYPESIZE 10
+
 #define FROM "from"
 #define FUNC "func"
 
@@ -19,6 +21,9 @@
 
 #define CLOSEPAREN "closeparenthesis"
 #define CLOSEPAREN_L ')'
+
+#define NEWLINE "newline"
+#define NEWLINE_L '\n'
 
 typedef struct Keyword
 {
@@ -44,6 +49,15 @@ typedef struct Parameter
 	char* varType;
 }Parameter;
 
+
+typedef struct Function
+{
+	char* functionName;//MaxFUNCSIZE
+	Parameter* parameterList;
+	int numofParameters;
+	char* returnType;
+
+}Function;
 #endif // !KEYWORD_H
 
 

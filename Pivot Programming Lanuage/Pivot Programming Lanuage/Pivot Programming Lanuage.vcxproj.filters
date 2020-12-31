@@ -52,6 +52,12 @@
     <Filter Include="Header Files\Lexer\KeyWords">
       <UniqueIdentifier>{40b2e526-2cef-4cec-ae4b-5f8891fb2f93}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Utils">
+      <UniqueIdentifier>{926d0121-bcb1-478f-a958-ce0d0d50532e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{f9a8073f-7856-46d1-8e92-963d0830d48d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\README.md">
@@ -86,6 +92,9 @@
     <ClCompile Include="Source1.c">
       <Filter>Source Files\Lexer</Filter>
     </ClCompile>
+    <ClCompile Include="Utils.c">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stack.h">
@@ -108,6 +117,9 @@
     </ClInclude>
     <ClInclude Include="Tokenizer.h">
       <Filter>Header Files\Lexer</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Header Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

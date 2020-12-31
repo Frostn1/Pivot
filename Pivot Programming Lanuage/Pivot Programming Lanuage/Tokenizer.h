@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>	
 #include "KeyWord.h"
+#include "Utils.h"
 #define MAXLINES 256
 #define MAXTOKENS 10
 #define MAXPARAMSIZE 10

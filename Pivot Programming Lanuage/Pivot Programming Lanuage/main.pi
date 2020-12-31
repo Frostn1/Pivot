@@ -1,7 +1,7 @@
 from {io}
 from {img}
 
-func main(int num) int {
+func main(int num, int num2, int num3, int num4) int {
 
 	int num = 6;
 	ax = 5;
@@ -9,5 +9,6 @@ func main(int num) int {
 	bx = ax + bx + ax;
 	print ax;
 	num = read();
-	return inf;	
+	return inf;
+	
 }

@@ -79,6 +79,8 @@ int Tokenize(char* rawCode, unsigned long size)
 		}
 		else if (See(rawCode, i) == 'f' && PeekS(rawCode, i, 1) == 'u' && PeekS(rawCode, i, 2) == 'n' && PeekS(rawCode, i, 3) == 'c')
 		{
+
+			Function* funct = (Function*)malloc(sizeof(Function));
 			Keyword* kw = (Keyword*)malloc(sizeof(Keyword));
 			kw->column = col;
 			kw->row = row;
@@ -107,19 +109,27 @@ int Tokenize(char* rawCode, unsigned long size)
 			if (PeekS(rawCode, i, counter + funcCounter) != OPENPAREN_L)
 				Throw("Func Error", "Missing '('", row, col);
 
+			funct->functionName = (char*)malloc(sizeof(char) * MAXFUNCSIZE);
+			strcpy(funct->functionName, funcName);
+
 			//TO DO:
 			//Create a ')' Type checker
-			//funcCounter = 0;
+			
+
 
 			char* e;
 			int sel = 0, index = 0, paramIndex = 0;
 			char* funcParam = (char*)malloc(sizeof(char) * MAXPARAMSIZE * MAXPARAMSIZE / 2);
 			char* funcParamName = (char*)malloc(sizeof(char) * MAXPARAMSIZE);
 			char* funcParamType = (char*)malloc(sizeof(char) * MAXPARAMSIZE);
-			Parameter* params = (Parameter*)malloc(sizeof(Parameter));
-			while (PeekS(rawCode, i, counter + funcCounter) != CLOSEPAREN_L && PeekS(rawCode, i, counter + funcCounter+1) != CLOSEPAREN_L)
+			char* funcParamReturn = (char*)malloc(sizeof(char) * MAXPARAMSIZE);
+			//Parameter* params = (Parameter*)malloc(sizeof(Parameter));
+			funct->parameterList = (Parameter*)malloc(sizeof(Parameter) * MAXPARAMSIZE);
+			funct->numofParameters = 0;
+			while (PeekS(rawCode, i, counter + funcCounter) != CLOSEPAREN_L && PeekS(rawCode, i, counter + funcCounter + 1) != CLOSEPAREN_L && PeekS(rawCode, i, counter + funcCounter-1) != CLOSEPAREN_L)//
 			{
-				while (PeekS(rawCode, i, counter + funcCounter) == SPACE)
+				paramIndex = 0;
+				while (PeekS(rawCode, i, counter + funcCounter) == SPACE && PeekS(rawCode, i, counter + funcCounter + 1) == SPACE)
 					counter++;
 				while (PeekS(rawCode, i, counter + ++funcCounter) != ',' && PeekS(rawCode, i, counter + funcCounter) != CLOSEPAREN_L)
 					funcParam[paramIndex++] = rawCode[i + counter + funcCounter];
@@ -128,20 +138,52 @@ int Tokenize(char* rawCode, unsigned long size)
 				e = strchr(funcParam, ' ');
 				index = (int)(e - funcParam);
 
+				funcParamType = Slice(funcParam, 0, index);
+				while (See(funcParam, index) == SPACE)
+					index++;
+				funcParamName = Slice(funcParam, index, strlen(funcParam));
+				counter++;
+				//funcParam = Slice(funcParam, index, strlen)
+
+				
+				strcpy(funct->parameterList[funct->numofParameters++].varName, funcParamName);
+				strcpy(funct->parameterList[funct->numofParameters++].varType, funcParamType);
 
 			}
+			
 
-			col++;
-			if (!isEmbeded && See(rawCode, i) == '\n')
+			while (PeekS(rawCode, i, counter + funcCounter) == SPACE)
+				counter++;
+			index = 0;
+			while (PeekS(rawCode, i, counter + funcCounter) != OPENBRACKET_L  && index != MAXTYPESIZE)//&& PeekS(rawCode, i, counter + funcCounter) != SPACE
 			{
-				row++;
-				col = 0;
-				lineList->inLevel = 0;
-				lineList->list[++lineList->level] = (Keyword*)malloc(sizeof(Keyword) * MAXTOKENS);
+				if(PeekS(rawCode, i, counter + funcCounter) != SPACE && PeekS(rawCode, i, counter + funcCounter) != OPENBRACKET_L && PeekS(rawCode, i, counter + funcCounter) != NEWLINE_L)
+					funcParamReturn[index++] = PeekS(rawCode, i, counter + funcCounter);
+				counter++;
+			}
+			funcParamReturn[index] = '\0';
+			
+			if (index == MAXTYPESIZE)
+			{
+				Throw("Func Error", "Missing '{'", row, col);
 			}
 
+			strcpy(funct->returnType, funcParamReturn);
 		}
-		
+
+
+
+
+
+
+		col++;
+		if (!isEmbeded && See(rawCode, i) == '\n')
+		{
+			row++;
+			col = 0;
+			lineList->inLevel = 0;
+			lineList->list[++lineList->level] = (Keyword*)malloc(sizeof(Keyword) * MAXTOKENS);
+		}
 
 	}
 	return 1;

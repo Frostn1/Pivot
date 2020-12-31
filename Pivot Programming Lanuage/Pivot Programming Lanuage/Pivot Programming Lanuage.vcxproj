@@ -149,6 +149,7 @@
     <ClInclude Include="KeyWord.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="Tokenizer.h" />
+    <ClInclude Include="Utils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CalcPost.c" />
@@ -160,6 +161,7 @@
     <ClCompile Include="Source1.c" />
     <ClCompile Include="Stack.c" />
     <ClCompile Include="Tokenizer.c" />
+    <ClCompile Include="Utils.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

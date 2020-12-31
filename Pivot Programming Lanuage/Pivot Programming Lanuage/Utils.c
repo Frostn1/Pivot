@@ -46,3 +46,15 @@ char PeekS(char* code, int index, int appli)
 {
 	return code[index + appli];
 }
+
+char* Slice(char* original, int startIndex, int endIndex)
+{
+	char* finished = (char*)malloc(sizeof(original));
+	int counter = 0;
+	for (int i = startIndex; i < endIndex; i++)
+	{
+		finished[counter++] = original[i];
+	}
+	finished[counter++] = '\0';
+	return finished;
+}
