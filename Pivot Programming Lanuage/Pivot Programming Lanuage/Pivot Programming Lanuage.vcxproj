@@ -145,9 +145,12 @@
     <ClInclude Include="CalcPost.h" />
     <ClInclude Include="Chunk.h" />
     <ClInclude Include="ConInPost.h" />
+    <ClInclude Include="Extractor.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="KeyWord.h" />
+    <ClInclude Include="Lexer.h" />
     <ClInclude Include="Stack.h" />
+    <ClInclude Include="Token.h" />
     <ClInclude Include="Tokenizer.h" />
     <ClInclude Include="Utils.h" />
   </ItemGroup>
@@ -155,8 +158,10 @@
     <ClCompile Include="CalcPost.c" />
     <ClCompile Include="Chunk.c" />
     <ClCompile Include="ConInPost.c" />
+    <ClCompile Include="Extractor.c" />
     <ClCompile Include="Helper.c" />
     <ClCompile Include="KeyWord.c" />
+    <ClCompile Include="Lexer.c" />
     <ClCompile Include="Source.c" />
     <ClCompile Include="Source1.c" />
     <ClCompile Include="Stack.c" />

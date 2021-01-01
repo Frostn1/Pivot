@@ -1,6 +1,7 @@
 #include "Utils.h"
 
 
+
 void Throw(char* errorType, char* errorMsg, int row, int col)
 {
 	printf("< %s >\n[ %s ] on %d %d", errorType, errorMsg, row, col);
@@ -28,6 +29,8 @@ unsigned long fsize(FILE* file1)
 	fseek(file1, 0, SEEK_SET);
 	return len;
 }
+
+
 
 FILE* OpenFile(char* fileName)
 {
@@ -57,4 +60,17 @@ char* Slice(char* original, int startIndex, int endIndex)
 	}
 	finished[counter++] = '\0';
 	return finished;
+}
+
+int isSpecial(char chara)
+{
+	return chara == ' ' || chara == '(' || chara == ')' || chara == '+' || chara == '-' || chara == '*' || chara == '/' || chara == '%' || chara == '{' || chara == '}' || chara == ';';
+}
+
+void ResetString(char* str, int size)
+{
+	for (int i = 0; i < size; i++)
+	{
+		str[i] = '\0';
+	}
 }

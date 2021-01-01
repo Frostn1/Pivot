@@ -18,4 +18,8 @@ FILE* OpenFile(char* fileName);
 char See(char* code, int index);
 char PeekS(char* code, int index, int appli);
 char* Slice(char* original, int startIndex, int endIndex);
+void ResetString(char* str, int size);
+
+//Char
+int isSpecial(char chara);
 #endif // !UTILS_H

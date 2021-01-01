@@ -16,6 +16,7 @@ void Process(char* fileName)
 }
 int Tokenize(char* rawCode, unsigned long size)
 {
+	FunctionList* functions = (FunctionList*)malloc(sizeof(FunctionList));
 	KeywordList* lineList = (Keyword*)malloc(sizeof(KeywordList));
 	lineList->list = (Keyword*)malloc(sizeof(Keyword) * MAXTOKENS);
 	lineList->list[0] = (Keyword*)malloc(sizeof(Keyword) * MAXTOKENS);
@@ -80,7 +81,9 @@ int Tokenize(char* rawCode, unsigned long size)
 		else if (See(rawCode, i) == 'f' && PeekS(rawCode, i, 1) == 'u' && PeekS(rawCode, i, 2) == 'n' && PeekS(rawCode, i, 3) == 'c')
 		{
 
+			//int gc = 4;
 			Function* funct = (Function*)malloc(sizeof(Function));
+			functions->numOfFunctions = 0;
 			Keyword* kw = (Keyword*)malloc(sizeof(Keyword));
 			kw->column = col;
 			kw->row = row;
@@ -91,8 +94,13 @@ int Tokenize(char* rawCode, unsigned long size)
 				Throw("Func Error", "Missing space after func", row, col);
 			else
 				counter++;
+			//gc++;
 			while (PeekS(rawCode, i, counter) == SPACE)
+			{
 				counter++;
+				//gc++;
+			}
+				
 
 			while (PeekS(rawCode, i, funcCounter + counter) != OPENPAREN_L && PeekS(rawCode, i, funcCounter + counter) != SPACE && PeekS(rawCode, i, funcCounter + counter) != CLOSEPAREN_L)
 			{
@@ -102,10 +110,15 @@ int Tokenize(char* rawCode, unsigned long size)
 				if (PeekS(rawCode, i, funcCounter + counter) == '\n')
 					Throw("Func Error", "Missing ')'", row, col);
 				funcCounter++;
+				//gc++;
 			}
 			funcName[funcCounter] = '\0';
 			while (PeekS(rawCode, i, counter + funcCounter) == SPACE)
+			{
 				counter++;
+				//gc++;
+			}
+				
 			if (PeekS(rawCode, i, counter + funcCounter) != OPENPAREN_L)
 				Throw("Func Error", "Missing '('", row, col);
 
@@ -130,36 +143,54 @@ int Tokenize(char* rawCode, unsigned long size)
 			{
 				paramIndex = 0;
 				while (PeekS(rawCode, i, counter + funcCounter) == SPACE && PeekS(rawCode, i, counter + funcCounter + 1) == SPACE)
+				{
 					counter++;
+					//gc++;
+				}
 				while (PeekS(rawCode, i, counter + ++funcCounter) != ',' && PeekS(rawCode, i, counter + funcCounter) != CLOSEPAREN_L)
+				{
 					funcParam[paramIndex++] = rawCode[i + counter + funcCounter];
+					//gc++;
+				}
+					
 				funcParam[paramIndex++] = '\0';
-
+				//gc++;
 				e = strchr(funcParam, ' ');
 				index = (int)(e - funcParam);
 
 				funcParamType = Slice(funcParam, 0, index);
 				while (See(funcParam, index) == SPACE)
+				{
 					index++;
+					//gc++;
+				}
 				funcParamName = Slice(funcParam, index, strlen(funcParam));
 				counter++;
+				//gc++;
 				//funcParam = Slice(funcParam, index, strlen)
 
-				
-				strcpy(funct->parameterList[funct->numofParameters++].varName, funcParamName);
-				strcpy(funct->parameterList[funct->numofParameters++].varType, funcParamType);
-
+				//funct->parameterList[funct->numofParameters++] = (Parameter*)malloc(sizeof(Parameter));
+				funct->parameterList[funct->numofParameters].varName = (char*)malloc(sizeof(char) * MAXVARNAMESIZE);
+				funct->parameterList[funct->numofParameters].varType = (char*)malloc(sizeof(char) * MAXPARAMSIZE);
+				strcpy(funct->parameterList[funct->numofParameters].varName, funcParamName);
+				strcpy(funct->parameterList[funct->numofParameters].varType, funcParamType);
+				funct->numofParameters++;
 			}
 			
 
 			while (PeekS(rawCode, i, counter + funcCounter) == SPACE)
+			{
 				counter++;
+				//gc++;
+			}
+				
 			index = 0;
 			while (PeekS(rawCode, i, counter + funcCounter) != OPENBRACKET_L  && index != MAXTYPESIZE)//&& PeekS(rawCode, i, counter + funcCounter) != SPACE
 			{
 				if(PeekS(rawCode, i, counter + funcCounter) != SPACE && PeekS(rawCode, i, counter + funcCounter) != OPENBRACKET_L && PeekS(rawCode, i, counter + funcCounter) != NEWLINE_L)
 					funcParamReturn[index++] = PeekS(rawCode, i, counter + funcCounter);
 				counter++;
+				//gc++;
 			}
 			funcParamReturn[index] = '\0';
 			
@@ -167,8 +198,11 @@ int Tokenize(char* rawCode, unsigned long size)
 			{
 				Throw("Func Error", "Missing '{'", row, col);
 			}
-
+			funct->returnType = (char*)malloc(sizeof(char) * MAXPARAMSIZE);
 			strcpy(funct->returnType, funcParamReturn);
+			//functions->functions[functions->numOfFunctions] = (Function*)malloc(sizeof(Function));
+			functions->functions[functions->numOfFunctions++] = funct;
+			i += counter + funcCounter;
 		}
 
 

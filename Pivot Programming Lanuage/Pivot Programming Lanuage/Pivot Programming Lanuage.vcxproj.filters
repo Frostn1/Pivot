@@ -58,6 +58,12 @@
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{f9a8073f-7856-46d1-8e92-963d0830d48d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Extractor">
+      <UniqueIdentifier>{185c3c02-c0a6-4bff-a952-2c280e8ed2a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Extractor">
+      <UniqueIdentifier>{14896515-25f0-4f2c-9bca-246bfc5b19d7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\README.md">
@@ -95,6 +101,12 @@
     <ClCompile Include="Utils.c">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
+    <ClCompile Include="Extractor.c">
+      <Filter>Source Files\Extractor</Filter>
+    </ClCompile>
+    <ClCompile Include="Lexer.c">
+      <Filter>Source Files\Extractor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stack.h">
@@ -120,6 +132,15 @@
     </ClInclude>
     <ClInclude Include="Utils.h">
       <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Extractor.h">
+      <Filter>Header Files\Extractor</Filter>
+    </ClInclude>
+    <ClInclude Include="Token.h">
+      <Filter>Header Files\Extractor</Filter>
+    </ClInclude>
+    <ClInclude Include="Lexer.h">
+      <Filter>Header Files\Extractor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

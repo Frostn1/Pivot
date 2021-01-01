@@ -58,6 +58,12 @@ typedef struct Function
 	char* returnType;
 
 }Function;
+
+typedef struct FunctionList
+{
+	Function** functions;
+	int numOfFunctions;
+}FunctionList;
 #endif // !KEYWORD_H
 
 

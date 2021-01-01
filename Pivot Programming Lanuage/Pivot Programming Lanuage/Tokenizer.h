@@ -8,7 +8,7 @@
 #define MAXLINES 256
 #define MAXTOKENS 10
 #define MAXPARAMSIZE 10
-
+#define MAXVARNAMESIZE 20
 //Main functions
 void Process(char* fileName);
 
