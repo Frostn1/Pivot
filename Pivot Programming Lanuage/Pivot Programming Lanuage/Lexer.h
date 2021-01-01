@@ -2,7 +2,7 @@
 #define LEXER_H
 
 #include "Token.h"
-#define TOKENMAXLENGTH 20
+
 typedef struct LEXER
 {
 	char* raw;

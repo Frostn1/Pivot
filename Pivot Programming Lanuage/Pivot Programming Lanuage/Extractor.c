@@ -1,7 +1,7 @@
 #include "Extractor.h"
 
 
-void Exctract(char* filePath)
+Lexer* Exctract(char* filePath)
 {
 	Lexer* lex = initLexer(Read(OpenFile(filePath)));
 	
@@ -12,11 +12,7 @@ void Exctract(char* filePath)
 		{
 			lex->currentToke[lex->tokeIndex++] = lex->current;
 			lex->currentToke[lex->tokeIndex] = '\0';
-			lex->tokens[lex->tokensIndex] = (Token*)malloc(sizeof(Token));
-			lex->tokens[lex->tokensIndex]->self = (char*)malloc(sizeof(char) * TOKENMAXLENGTH);
-			strcpy(lex->tokens[lex->tokensIndex]->self, lex->currentToke);
-			lex->tokens[lex->tokensIndex]->col = lex->currentCol;
-			lex->tokens[lex->tokensIndex]->row = lex->currentRow;
+			lex->tokens[lex->tokensIndex] = InitToken(lex->currentToke, lex->currentRow, lex->currentCol);
 			lex->tokensIndex++;
 			
 
@@ -43,7 +39,7 @@ void Exctract(char* filePath)
 
 	}
 
-	PrintLexer(lex);
-	freeLexer(lex);
-	
+	//PrintLexer(lex);
+	//freeLexer(lex);
+	return lex;
 }
