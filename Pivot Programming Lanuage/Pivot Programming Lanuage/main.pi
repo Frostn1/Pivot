@@ -1,5 +1,4 @@
 from {io}
-from {img}
 
 func main(int num) int {
 

@@ -52,6 +52,12 @@
     <Filter Include="Header Files\Extractor">
       <UniqueIdentifier>{14896515-25f0-4f2c-9bca-246bfc5b19d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Shifter">
+      <UniqueIdentifier>{28a3f9fa-231b-4a53-9ba3-4190ea7c5f23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Shifter">
+      <UniqueIdentifier>{6bc06e7c-406e-491a-a0a5-49e47f4e20d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\README.md">
@@ -86,6 +92,15 @@
     <ClCompile Include="main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Parser.c">
+      <Filter>Source Files\Shifter</Filter>
+    </ClCompile>
+    <ClCompile Include="Token.c">
+      <Filter>Source Files\Extractor</Filter>
+    </ClCompile>
+    <ClCompile Include="Shifter.c">
+      <Filter>Source Files\Shifter</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Stack.h">
@@ -111,6 +126,12 @@
     </ClInclude>
     <ClInclude Include="Lexer.h">
       <Filter>Header Files\Extractor</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser.h">
+      <Filter>Header Files\Shifter</Filter>
+    </ClInclude>
+    <ClInclude Include="Shifter.h">
+      <Filter>Header Files\Shifter</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

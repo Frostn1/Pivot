@@ -147,6 +147,8 @@
     <ClInclude Include="Extractor.h" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="Lexer.h" />
+    <ClInclude Include="Parser.h" />
+    <ClInclude Include="Shifter.h" />
     <ClInclude Include="Stack.h" />
     <ClInclude Include="Token.h" />
     <ClInclude Include="Utils.h" />
@@ -158,8 +160,11 @@
     <ClCompile Include="Helper.c" />
     <ClCompile Include="Lexer.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="Parser.c" />
+    <ClCompile Include="Shifter.c" />
     <ClCompile Include="Source.c" />
     <ClCompile Include="Stack.c" />
+    <ClCompile Include="Token.c" />
     <ClCompile Include="Utils.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

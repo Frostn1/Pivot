@@ -10,10 +10,13 @@ Lexer* Exctract(char* filePath)
 
 		if (isSpecial(lex->current))
 		{
-			lex->currentToke[lex->tokeIndex++] = lex->current;
+			if (lex->current != ' ')
+				lex->currentToke[lex->tokeIndex++] = lex->current;
 			lex->currentToke[lex->tokeIndex] = '\0';
 			lex->tokens[lex->tokensIndex] = InitToken(lex->currentToke, lex->currentRow, lex->currentCol);
 			lex->tokensIndex++;
+			
+			
 			
 
 			//printf("%s\n", lex->currentToke);
@@ -29,6 +32,7 @@ Lexer* Exctract(char* filePath)
 		else if (lex->current == '\n')
 		{
 			lex->currentRow++;
+			lex->currentCol = 0;
 			Advance(lex);
 		}
 		else
@@ -39,7 +43,7 @@ Lexer* Exctract(char* filePath)
 
 	}
 
-	//PrintLexer(lex);
+	PrintLexer(lex);
 	//freeLexer(lex);
 	return lex;
 }
