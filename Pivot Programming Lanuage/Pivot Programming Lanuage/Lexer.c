@@ -1,6 +1,6 @@
 #include "Lexer.h"
 
-Lexer* initLexer(char* raw)
+Lexer* initLexer(char* raw, char* filePath)
 {
 	Lexer* lex = (Lexer*)malloc(sizeof(Lexer));
 	lex->tokens = (Token*)malloc(sizeof(Token) * TOKENMAXLENGTH * TOKENMAXLENGTH / 2);
@@ -14,6 +14,8 @@ Lexer* initLexer(char* raw)
 	lex->tokensIndex = 0;
 	lex->currentCol = 0;
 	lex->currentRow = 0;
+	lex->fileName = (char*)malloc(sizeof(char) * strlen(filePath));
+	strcpy(lex->fileName, filePath);
 	return lex;
 }
 

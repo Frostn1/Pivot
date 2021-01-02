@@ -4,7 +4,7 @@
 
 void Throw(char* errorType, char* errorMsg, int row, int col)
 {
-	printf("< %s >\n[ %s ] on %d %d", errorType, errorMsg, row, col);
+	printf("\n< %s >\n[ %s ] on %d %d", errorType, errorMsg, row, col);
 	exit(0);
 }
 
@@ -19,6 +19,7 @@ char* Read(FILE* file)
 		counter++;
 	}
 	raw[counter] = '\0';
+	fclose(file);
 	return raw;
 }
 

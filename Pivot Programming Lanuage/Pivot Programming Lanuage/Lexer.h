@@ -21,10 +21,10 @@ typedef struct LEXER
 	
 	
 	Token** tokens;
-
+	char* fileName;
 }Lexer;
 
-Lexer* initLexer(char* raw);
+Lexer* initLexer(char* raw, char* filePath);
 
 void freeLexer(Lexer* lex);
 void Advance(Lexer* lex);

@@ -3,8 +3,8 @@
 
 Lexer* Exctract(char* filePath)
 {
-	Lexer* lex = initLexer(Read(OpenFile(filePath)));
-	
+	Lexer* lex = initLexer(Read(OpenFile(filePath)), filePath);
+
 	while (lex->rawIndex < lex->rawLength)
 	{	
 
