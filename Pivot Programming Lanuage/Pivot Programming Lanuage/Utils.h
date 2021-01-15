@@ -19,7 +19,15 @@ char See(char* code, int index);
 char PeekS(char* code, int index, int appli);
 char* Slice(char* original, int startIndex, int endIndex);
 void ResetString(char* str, int size);
+int IsDataTypes(char* str);
+int isIn(char chara, char* str);
 
 //Char
 int isSpecial(char chara);
+int isOpe(char chara);
+
+//Special
+void ftoa(float n, char* res, int afterpoint);
+int intToStr(int x, char str[], int d);
+void reverse(char* str, int len);
 #endif // !UTILS_H
