@@ -1,0 +1,6 @@
+LOAD io
+FUNC main
+PARAM int num
+RTN int
+CRT int num
+ASGN num 78
