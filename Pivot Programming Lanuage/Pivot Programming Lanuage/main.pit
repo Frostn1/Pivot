@@ -4,3 +4,6 @@ PARAM int num
 RTN int
 CRT int num
 ASGN num 78
+ASGN ax 5
+ASGN bx 0
+ASGN bx 0

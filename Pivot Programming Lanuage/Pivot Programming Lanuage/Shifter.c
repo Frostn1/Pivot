@@ -169,14 +169,70 @@ void Shift(Parser* par)
 			i -= 1;
 
 		}
-		else if (!strcmp(par->tokens_t[i + 1]->self, "="))
+		else if (!strcmp(par->tokens_t[i]->self, "print"))
 		{
-
-			printf("[ New assigning of value to a variable - %s]\n",par->tokens_t[i]->self);
+			printf("[ Print Function call ]\n");
 		}
 		else
 		{
-			Throw("Key Word Error", "Unknown Key Word", par->tokens_t[i]->row, par->tokens_t[i]->col);
+			printf("[ New assigning of value to a variable - %s]\n", par->tokens_t[i]->self);
+			char* varName = (char*)malloc(sizeof(char) * strlen(par->tokens_t[i]->self));
+			printf("Name is %s\n", par->tokens_t[i]->self);
+			strcpy(varName, par->tokens_t[i]->self);
+			//fwrite(par->tokens_t[i]->self, 1, strlen(par->tokens_t[i]->self) * sizeof(char), par->file);
+			i++;
+			while (!strcmp(par->tokens_t[i]->self, ""))
+				i++;
+			if (strcmp(par->tokens_t[i]->self, "="))
+				Throw("Var Error", "Missing '='", par->tokens_t[i]->row, par->tokens_t[i]->col);
+			i++;
+			int valCounter = 0, bufferCounter = -1, bufferAlocate = 1, flag = 1, opeCounter = 0, variableFlag = 0;
+			char** buffer = (char**)malloc(1 * sizeof(char));
+
+
+			while (flag)
+			{
+				if (strcmp(par->tokens_t[i]->self, "") && !isIn(';', par->tokens_t[i]->self))
+				{
+					buffer[++bufferCounter] = (char*)malloc(sizeof(char) * strlen(par->tokens_t[i]->self));
+					strcpy(buffer[bufferCounter], par->tokens_t[i]->self);
+				}
+				else if (isIn(';', par->tokens_t[i]->self))
+				{
+					char* buffer_t = (char*)malloc(strlen(par->tokens_t[i]->self) * sizeof(char));//par->tokens_t[i]->self[strlen(par->tokens_t[i]->self)-1]
+					strncpy(buffer_t, par->tokens_t[i]->self, strlen(par->tokens_t[i]->self) - 1);
+					buffer_t[strlen(par->tokens_t[i]->self) - 1] = '\0';
+					buffer[++bufferCounter] = (char*)malloc(sizeof(char) * strlen(buffer_t));
+					strcpy(buffer[bufferCounter], buffer_t);
+					free(buffer_t);
+					flag = 0;
+				}
+				if (strlen(par->tokens_t[i]->self) == 1 && isOpe(par->tokens_t[i]->self[0]))
+					opeCounter;
+				i++;
+			}
+			bufferCounter++;
+			Result* caps = (Result*)malloc(sizeof(Result));
+			buffer = Convert(buffer, bufferCounter);
+			caps = Calculate(buffer, bufferCounter - opeCounter);
+			char snum[100];
+			fwrite("\nASGN ", 1, strlen("\nASGN ") * sizeof(char), par->file);
+			fwrite(varName, 1, strlen(varName) * sizeof(char), par->file);
+			fwrite(" ", 1, strlen(" ") * sizeof(char), par->file);
+			if (caps->sel)
+			{
+				ftoa(caps->resultF, snum, 100);
+				printf("{ Final is %.2f }\n", caps->resultF);
+			}
+			else
+			{
+				itoa(caps->resultI, snum, 10);
+				printf("{ Final is %d }\n", caps->resultI);
+			}
+			fwrite(snum, 1, strlen(snum) * sizeof(char), par->file);
+			//fwrite("\n", 1, strlen("\n") * sizeof(char), par->file);
+			i -= 1;
+			//Throw("Key Word Error", "Unknown Key Word", par->tokens_t[i]->row, par->tokens_t[i]->col);
 		}
 		
 	
