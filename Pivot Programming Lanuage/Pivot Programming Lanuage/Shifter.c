@@ -166,8 +166,13 @@ void Shift(Parser* par)
 				printf("{ Final is %d }\n", caps->resultI);
 			}
 			fwrite(snum, 1, strlen(snum) * sizeof(char), par->file);
+			i -= 1;
 
+		}
+		else if (!strcmp(par->tokens_t[i + 1]->self, "="))
+		{
 
+			printf("[ New assigning of value to a variable - %s]\n",par->tokens_t[i]->self);
 		}
 		else
 		{

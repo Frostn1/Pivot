@@ -15,9 +15,6 @@ Lexer* Exctract(char* filePath)
 			lex->currentToke[lex->tokeIndex] = '\0';
 			lex->tokens[lex->tokensIndex] = InitToken(lex->currentToke, lex->currentRow, lex->currentCol);
 			lex->tokensIndex++;
-			
-			
-			
 
 			//printf("%s\n", lex->currentToke);
 			ResetString(lex->currentToke, lex->tokeIndex);
