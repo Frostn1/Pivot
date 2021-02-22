@@ -3,7 +3,11 @@ from {io}
 func main(int num) int {
 
 	int num = 65 + 13;
+<<<<<<< HEAD
 	ax  = 5;
+=======
+	ax = 5;
+>>>>>>> main
 	bx = ax;
 	bx = ax + bx + ax;
 	print ax;
