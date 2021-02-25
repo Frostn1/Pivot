@@ -86,7 +86,10 @@ enum {
 		T_Import, // import
 		T_From, // from
 		// import a module from a piece of code in the following order
-		// import someModule from 'someFile.pi'
+		// import someModule from 'someFile.pi' 
+		// ( js style )
+
+
 
 };
 

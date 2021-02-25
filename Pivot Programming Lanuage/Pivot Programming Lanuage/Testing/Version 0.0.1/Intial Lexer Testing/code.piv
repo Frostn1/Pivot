@@ -1,0 +1,5 @@
+func main() {
+	init num = 1.5;
+	num = 10;
+	return inf;
+}
