@@ -1,5 +1,7 @@
 func main() {
-	init num = 1.5;
+	init num = hey;
 	num = 10;
+	init num1 = 20;
+	num1 += num;
 	return inf;
 }

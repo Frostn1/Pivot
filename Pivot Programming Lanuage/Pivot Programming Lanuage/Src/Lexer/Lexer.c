@@ -44,6 +44,15 @@ PI_Lexer* initializeLexer(char* path)
 	return lex;
 }
 
+PI_TokenList* startLexer(char* path)
+{
+    PI_Lexer* lex = initializeLexer(path);
+    checkTokens(lex);
+    PI_TokenList* list = lex->tokenList;
+    freeLexer(lex, 0);
+    return list;
+}
+
 void advanceLexer(PI_Lexer* lex)
 {
     if (lex->codeBlock[lex->codeBlockCounter+1] == '\n')
@@ -285,6 +294,27 @@ void checkTokens(PI_Lexer* lex)
             advanceLexer(lex);
             cleanBuffer(lex,"Assign",null,T_Assign);
             break;
+        case '+':
+            if (strcmp(lex->currentWord, ""))
+                cleanBuffer(lex, "UserMade", lex->currentWord, T_UserMade);
+
+            advanceLexer(lex);
+            switch (lex->currentCharacter)
+            {
+            case '=':
+                advanceLexer(lex);
+                switch (lex->currentCharacter)
+                {
+                default:
+                    cleanBuffer(lex, "AssignAdd", null, T_AssignAdd);
+                    break;
+                }
+                break;
+            default:
+                cleanBuffer(lex, "Add", null, T_Add);
+                break;
+            }
+            break;
         case ';':
             if (strcmp(lex->currentWord, ""))
                 cleanBuffer(lex, "UserMade", lex->currentWord, T_UserMade);
@@ -322,25 +352,9 @@ void checkTokens(PI_Lexer* lex)
         
 }
 
-
-/*char peek(PI_Lexer* lex)
-{
-    return 0;
-}
-
-char peekNext(PI_Lexer* lex)
-{
-    return 0;
-}*/
-
 void cleanBuffer(PI_Lexer* lex, char* F_Name, char* F_Value, int F_Id)
 {
 
-    printf("[ Modify Value '%s' ]\n", lex->currentWord);
-    //char* newName = null;
-    //char* newValue = null;
-    //if (F_Name != null) newName = F_Name;
-    //if (F_Value != null) newValue = F_Value;
     if (F_Value == null)
         F_Value = "";
     if (F_Id == 20)
@@ -352,7 +366,7 @@ void cleanBuffer(PI_Lexer* lex, char* F_Name, char* F_Value, int F_Id)
     lex->currentWordLength = 0;
 }
 
-void freeLexer(PI_Lexer* lex)
+void freeLexer(PI_Lexer* lex, int freeTokensFlag)
 {
     if (lex->codeBlock != null)
         free(lex->codeBlock);
@@ -360,7 +374,7 @@ void freeLexer(PI_Lexer* lex)
         free(lex->currentWord);
     if (lex->codePath != null)
         free(lex->codePath);
-    if (lex->tokenList != null)
+    if (lex->tokenList != null && freeTokensFlag)
         freeTokenList(lex->tokenList);
     if (lex != null)
         free(lex);

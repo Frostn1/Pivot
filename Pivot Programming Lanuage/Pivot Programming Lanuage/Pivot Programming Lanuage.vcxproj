@@ -144,12 +144,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Src\Lexer\Lexer.c" />
+    <ClCompile Include="Src\Parser\Parser.c" />
     <ClCompile Include="Src\Token\Token.c" />
-    <ClCompile Include="Testing\Version 0.0.1\Intial Lexer Testing\Source.c" />
+    <ClCompile Include="Testing\Version 0.0.1\Intial Parser Testing\Source.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Additional\pch.h" />
     <ClInclude Include="Src\Lexer\Lexer.h" />
+    <ClInclude Include="Src\Parser\Parser.h" />
     <ClInclude Include="Src\Token\KnownTypes.h" />
     <ClInclude Include="Src\Token\Token.h" />
   </ItemGroup>

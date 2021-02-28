@@ -29,7 +29,10 @@
     <ClCompile Include="Src\Lexer\Lexer.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Testing\Version 0.0.1\Intial Lexer Testing\Source.c">
+    <ClCompile Include="Src\Parser\Parser.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Testing\Version 0.0.1\Intial Parser Testing\Source.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,6 +47,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Src\Additional\pch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Parser\Parser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
