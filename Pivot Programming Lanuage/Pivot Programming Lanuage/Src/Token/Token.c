@@ -35,10 +35,10 @@ void freeToken(PI_Token* token)
 {
 	if (token != null)
 	{
-		if (token->name != null)
-			free(token->name);
-		if (token->value != null)
-			free(token->value);
+		//if (token->name != null)
+			//free(token->name);
+		//if (token->value != null)
+			//free(token->value);
 		free(token);
 	}
 	
