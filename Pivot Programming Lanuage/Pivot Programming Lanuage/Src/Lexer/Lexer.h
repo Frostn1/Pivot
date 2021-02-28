@@ -26,5 +26,9 @@ typedef struct PI_LEXER_86 {
 
 PI_Lexer* initializeLexer(char* path);
 void advanceLexer(PI_Lexer* lex);
+void checkTokens(PI_Lexer* lex); // Change the return type on this to a list of tokens
+char peek(PI_Lexer* lex);
+char peekNext(PI_Lexer* lex);
+void cleanBuffer(PI_Lexer* lex); // Change the return type on this to a list of tokens
 void freeLexer(PI_Lexer* lex);
 #endif LEXER_T

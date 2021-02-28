@@ -140,32 +140,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="..\..\README.md" />
+    <None Include="Testing\Version 0.0.1\Intial Lexer Testing\code.piv" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CalcPost.h" />
-    <ClInclude Include="ConInPost.h" />
-    <ClInclude Include="Extractor.h" />
-    <ClInclude Include="Helper.h" />
-    <ClInclude Include="Lexer.h" />
-    <ClInclude Include="Parser.h" />
-    <ClInclude Include="Shifter.h" />
-    <ClInclude Include="Stack.h" />
-    <ClInclude Include="Token.h" />
-    <ClInclude Include="Utils.h" />
+    <ClCompile Include="Src\Lexer\Lexer.c" />
+    <ClCompile Include="Src\Token\Token.c" />
+    <ClCompile Include="Testing\Version 0.0.1\Intial Lexer Testing\Source.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CalcPost.c" />
-    <ClCompile Include="ConInPost.c" />
-    <ClCompile Include="Extractor.c" />
-    <ClCompile Include="Helper.c" />
-    <ClCompile Include="Lexer.c" />
-    <ClCompile Include="main.c" />
-    <ClCompile Include="Parser.c" />
-    <ClCompile Include="Shifter.c" />
-    <ClCompile Include="Source.c" />
-    <ClCompile Include="Stack.c" />
-    <ClCompile Include="Token.c" />
-    <ClCompile Include="Utils.c" />
+    <ClInclude Include="Src\Additional\pch.h" />
+    <ClInclude Include="Src\Lexer\Lexer.h" />
+    <ClInclude Include="Src\Token\KnownTypes.h" />
+    <ClInclude Include="Src\Token\Token.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -13,125 +13,38 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Source Files\Math">
-      <UniqueIdentifier>{2d71743c-6acc-4bf4-9338-15e616e5cda8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Math\Calc">
-      <UniqueIdentifier>{27150a63-33de-40cb-8773-b43f1cceb968}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Math\Helpers">
-      <UniqueIdentifier>{11d0cd0c-8735-4f7b-a548-91088f42b50c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Math\Main">
-      <UniqueIdentifier>{97c615c0-1f2b-4ff3-becc-e4ea0d9c8b0c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Math\Stack">
-      <UniqueIdentifier>{1384402c-3591-4fc0-b6a9-ff33039e5c48}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Math">
-      <UniqueIdentifier>{ac46113f-d937-4c47-9fad-4ea0589d854f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Math\Calc">
-      <UniqueIdentifier>{3c0ffe49-bbf0-42a1-a265-082e33b2f4fe}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Math\Helpers">
-      <UniqueIdentifier>{4e81baf0-01c5-40b2-bcf9-0ce68f2c0943}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Math\Stack">
-      <UniqueIdentifier>{a094366d-4cd4-4aa5-b0de-a9713d5fdb58}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Utils">
-      <UniqueIdentifier>{926d0121-bcb1-478f-a958-ce0d0d50532e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Utils">
-      <UniqueIdentifier>{f9a8073f-7856-46d1-8e92-963d0830d48d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Extractor">
-      <UniqueIdentifier>{185c3c02-c0a6-4bff-a952-2c280e8ed2a5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Extractor">
-      <UniqueIdentifier>{14896515-25f0-4f2c-9bca-246bfc5b19d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Shifter">
-      <UniqueIdentifier>{28a3f9fa-231b-4a53-9ba3-4190ea7c5f23}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Shifter">
-      <UniqueIdentifier>{6bc06e7c-406e-491a-a0a5-49e47f4e20d9}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\README.md">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="Testing\Version 0.0.1\Intial Lexer Testing\code.piv">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Stack.c">
-      <Filter>Source Files\Math\Stack</Filter>
-    </ClCompile>
-    <ClCompile Include="Source.c">
-      <Filter>Source Files\Math\Main</Filter>
-    </ClCompile>
-    <ClCompile Include="CalcPost.c">
-      <Filter>Source Files\Math\Calc</Filter>
-    </ClCompile>
-    <ClCompile Include="ConInPost.c">
-      <Filter>Source Files\Math\Calc</Filter>
-    </ClCompile>
-    <ClCompile Include="Helper.c">
-      <Filter>Source Files\Math\Helpers</Filter>
-    </ClCompile>
-    <ClCompile Include="Utils.c">
-      <Filter>Source Files\Utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Extractor.c">
-      <Filter>Source Files\Extractor</Filter>
-    </ClCompile>
-    <ClCompile Include="Lexer.c">
-      <Filter>Source Files\Extractor</Filter>
-    </ClCompile>
-    <ClCompile Include="main.c">
+    <ClCompile Include="Src\Token\Token.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Parser.c">
-      <Filter>Source Files\Shifter</Filter>
+    <ClCompile Include="Src\Lexer\Lexer.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Token.c">
-      <Filter>Source Files\Extractor</Filter>
-    </ClCompile>
-    <ClCompile Include="Shifter.c">
-      <Filter>Source Files\Shifter</Filter>
+    <ClCompile Include="Testing\Version 0.0.1\Intial Lexer Testing\Source.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Stack.h">
-      <Filter>Header Files\Math\Stack</Filter>
+    <ClInclude Include="Src\Token\KnownTypes.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CalcPost.h">
-      <Filter>Header Files\Math\Calc</Filter>
+    <ClInclude Include="Src\Token\Token.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ConInPost.h">
-      <Filter>Header Files\Math\Calc</Filter>
+    <ClInclude Include="Src\Lexer\Lexer.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Helper.h">
-      <Filter>Header Files\Math\Helpers</Filter>
-    </ClInclude>
-    <ClInclude Include="Utils.h">
-      <Filter>Header Files\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Extractor.h">
-      <Filter>Header Files\Extractor</Filter>
-    </ClInclude>
-    <ClInclude Include="Token.h">
-      <Filter>Header Files\Extractor</Filter>
-    </ClInclude>
-    <ClInclude Include="Lexer.h">
-      <Filter>Header Files\Extractor</Filter>
-    </ClInclude>
-    <ClInclude Include="Parser.h">
-      <Filter>Header Files\Shifter</Filter>
-    </ClInclude>
-    <ClInclude Include="Shifter.h">
-      <Filter>Header Files\Shifter</Filter>
+    <ClInclude Include="Src\Additional\pch.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
