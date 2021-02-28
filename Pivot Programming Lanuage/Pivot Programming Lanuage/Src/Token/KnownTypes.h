@@ -58,7 +58,7 @@ enum {
 	T_Quote, // '
 	//T_BackTick, // `
 
-
+	
 	// Unknown { Name tbd }
 	T_Unknown1, // <> Name tbd
 	T_Unknown2, // <=> Name tbd
@@ -81,6 +81,7 @@ enum {
 		// Functions
 		T_Func, // func
 		T_Return, // return
+		T_Main, // main
 
 		//Including Other Code
 		T_Import, // import
@@ -90,6 +91,23 @@ enum {
 		// ( js style )
 
 
+	// Variables
+	T_Init, // init
+
+
+	// Addtional
+	T_UserMade, // Type/Keywords made by the user
+
+	
+	// JumpBinded
+	T_If, // if
+	
+
+
 
 };
+
+// Name => Name of the token RightBracket, FunctionMain, ImportKeyWord
+// Value ( Not Always ) => ], null, null
+// Id => 16, 41, 42
 

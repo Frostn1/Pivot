@@ -3,8 +3,8 @@
 PI_Lexer* initializeLexer(char* path)
 {
     PI_Lexer* lex = (PI_Lexer*)malloc(sizeof(PI_Lexer));
-    lex->lineCounter = 0;
-    lex->columnCounter = 0;
+    lex->lineCounter = 1;
+    lex->columnCounter = 1;
     lex->codeBlockCounter = 0;
     if (lex == NULL)
     {
@@ -39,6 +39,8 @@ PI_Lexer* initializeLexer(char* path)
     lex->currentCharacter = lex->codeBlock[0];
     //fscanf(fp, "%s", lex->codeBlock);
     fclose(fp); // Closing given file
+
+    lex->tokenList = initializeTokenList();
 	return lex;
 }
 
@@ -47,7 +49,7 @@ void advanceLexer(PI_Lexer* lex)
     if (lex->codeBlock[lex->codeBlockCounter+1] == '\n')
     {
         lex->lineCounter++;
-        lex->columnCounter = 0;
+        lex->columnCounter = 1;
     }
     else
     {
@@ -57,7 +59,6 @@ void advanceLexer(PI_Lexer* lex)
     lex->currentWord = (char*)realloc(lex->currentWord, sizeof(char) * lex->currentWordLength + sizeof(char)*2);
     lex->currentWord[lex->currentWordLength++] = lex->currentCharacter;
     lex->currentWord[lex->currentWordLength] = '\0';
-    //strcat(lex->currentWord, lex->currentCharacter);
     lex->currentCharacter = lex->codeBlock[++lex->codeBlockCounter];       
 }
 
@@ -69,7 +70,6 @@ void checkTokens(PI_Lexer* lex)
         {
         case 'p':
         {
-            // Clean up the buffer
             if (strcmp(lex->currentWord, ""))
             {
                 advanceLexer(lex);
@@ -97,8 +97,7 @@ void checkTokens(PI_Lexer* lex)
                             {
 
                             default:
-                                cleanBuffer(lex);
-                                //printf("[ Print Function ]\n");
+                                cleanBuffer(lex,"PrintKeyWord",null,T_Output);
                                 break;
                             }
 
@@ -114,7 +113,7 @@ void checkTokens(PI_Lexer* lex)
         break;
         case 'f':
         {
-            // Clean up the buffer
+            
             if (strcmp(lex->currentWord, ""))
             {
                 advanceLexer(lex);
@@ -138,8 +137,8 @@ void checkTokens(PI_Lexer* lex)
                         switch (lex->currentCharacter)
                         {
                         default:
-                            cleanBuffer(lex);
-                            //printf("[ Func Keyword ]\n");
+                            cleanBuffer(lex,"FuncKeyWord",null,T_Func);
+                            
                             break;
                         }
                     }
@@ -175,7 +174,7 @@ void checkTokens(PI_Lexer* lex)
                         switch (lex->currentCharacter)
                         {
                         default:
-                            cleanBuffer(lex);
+                            cleanBuffer(lex, "InitKeyWord",null,T_Init);
                             break;
                         }
                         break;
@@ -186,13 +185,11 @@ void checkTokens(PI_Lexer* lex)
                     switch (lex->currentCharacter)
                     {
                     default:
-                        cleanBuffer(lex);
+                        cleanBuffer(lex,"InfKeyWord",null,T_Inf);
                         break;
                     }
                     break;
-                default:
-                    cleanBuffer(lex);
-                    break;
+                
                     
                 }
                 break;
@@ -201,7 +198,7 @@ void checkTokens(PI_Lexer* lex)
                 switch (lex->currentCharacter)
                 {
                 default:
-                    cleanBuffer(lex);
+                    cleanBuffer(lex,"IfKeyWord",null,T_If);
                     break;
                 }
             }
@@ -237,7 +234,7 @@ void checkTokens(PI_Lexer* lex)
                                 switch (lex->currentCharacter)
                                 {
                                 default:
-                                    cleanBuffer(lex);
+                                    cleanBuffer(lex,"ReturnKeyWord",null,T_Return);
                                     break;
                                 }
                             
@@ -250,67 +247,68 @@ void checkTokens(PI_Lexer* lex)
         break;
         case '(':
             if (strcmp(lex->currentWord, ""))
-                cleanBuffer(lex);
+                cleanBuffer(lex,"UserMade",lex->currentWord,T_UserMade);
             
             advanceLexer(lex);
-            cleanBuffer(lex);
-            //printf("[ Right Paren ]\n");
+
+            cleanBuffer(lex,"LeftParen",null,T_LParen);
+            
             break;
         case ')':
             if (strcmp(lex->currentWord, ""))
-                cleanBuffer(lex);
+                cleanBuffer(lex, "UserMade", lex->currentWord, T_UserMade);
             
             advanceLexer(lex);
-            cleanBuffer(lex);
-            //printf("[ Left Paren ]\n");
+            cleanBuffer(lex,"RightParen",null,T_RParen);
+            
             break;
         case '{':
             if (strcmp(lex->currentWord, ""))
-                cleanBuffer(lex);
+                cleanBuffer(lex, "UserMade", lex->currentWord, T_UserMade);
            
             advanceLexer(lex);
-            cleanBuffer(lex);
-            //printf("[ Left Brace ]\n");
+            cleanBuffer(lex,"LeftBrace",null,T_LBrace);
+            
             break;
         case '}':
             if (strcmp(lex->currentWord, ""))
-                cleanBuffer(lex);
+                cleanBuffer(lex, "UserMade", lex->currentWord, T_UserMade);
             
             advanceLexer(lex);
-            cleanBuffer(lex);
-            //printf("[ Right Brace ]\n");
+            cleanBuffer(lex,"RightBrace",null,T_RBrace);
+            
             break;
         case '=':
             if (strcmp(lex->currentWord, ""))
-                cleanBuffer(lex);
+                cleanBuffer(lex, "UserMade", lex->currentWord, T_UserMade);
             
             advanceLexer(lex);
-            cleanBuffer(lex);
+            cleanBuffer(lex,"Assign",null,T_Assign);
             break;
         case ';':
             if (strcmp(lex->currentWord, ""))
-                cleanBuffer(lex);
+                cleanBuffer(lex, "UserMade", lex->currentWord, T_UserMade);
             
             advanceLexer(lex);
-            cleanBuffer(lex);
+            cleanBuffer(lex,"SemiColon",null,T_SemiColon);
             break;
         case ' ':
             if (strcmp(lex->currentWord, ""))
-                cleanBuffer(lex);
+                cleanBuffer(lex, "UserMade", lex->currentWord, T_UserMade);
             advanceLexer(lex);
             strcpy(lex->currentWord, "");
             lex->currentWordLength = 0;
             break;
         case '\n':
             if (strcmp(lex->currentWord, ""))
-                cleanBuffer(lex);
+                cleanBuffer(lex, "UserMade", lex->currentWord, T_UserMade);
             advanceLexer(lex);
             strcpy(lex->currentWord, "");
             lex->currentWordLength = 0;
             break;
         case '\t':
             if (strcmp(lex->currentWord, ""))
-                cleanBuffer(lex);
+                cleanBuffer(lex, "UserMade", lex->currentWord, T_UserMade);
             advanceLexer(lex);
             strcpy(lex->currentWord, "");
             lex->currentWordLength = 0;
@@ -321,11 +319,11 @@ void checkTokens(PI_Lexer* lex)
 
         }
         }
-
+        
 }
 
 
-char peek(PI_Lexer* lex)
+/*char peek(PI_Lexer* lex)
 {
     return 0;
 }
@@ -333,11 +331,23 @@ char peek(PI_Lexer* lex)
 char peekNext(PI_Lexer* lex)
 {
     return 0;
-}
+}*/
 
-void cleanBuffer(PI_Lexer* lex)
+void cleanBuffer(PI_Lexer* lex, char* F_Name, char* F_Value, int F_Id)
 {
+
     printf("[ Modify Value '%s' ]\n", lex->currentWord);
+    //char* newName = null;
+    //char* newValue = null;
+    //if (F_Name != null) newName = F_Name;
+    //if (F_Value != null) newValue = F_Value;
+    if (F_Value == null)
+        F_Value = "";
+    if (F_Id == 20)
+        lex->lineCounter -= 1;
+    addTokenToList(lex->tokenList, initializeToken(F_Name, F_Value, F_Id, lex->columnCounter, lex->lineCounter));
+    if (F_Id == 20)
+        lex->lineCounter += 1;
     strcpy(lex->currentWord, "");
     lex->currentWordLength = 0;
 }
@@ -350,6 +360,8 @@ void freeLexer(PI_Lexer* lex)
         free(lex->currentWord);
     if (lex->codePath != null)
         free(lex->codePath);
+    if (lex->tokenList != null)
+        freeTokenList(lex->tokenList);
     if (lex != null)
         free(lex);
 

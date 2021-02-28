@@ -5,7 +5,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
+#include "../Token/Token.h"
+#include "../Token/KnownTypes.h"
 #define null NULL
 
 typedef struct PI_LEXER_86 {
@@ -20,6 +21,8 @@ typedef struct PI_LEXER_86 {
 	char* codePath; // Code Path used for error throwing ? { Might not actually need this }
 	char* codeBlock; // Full code block to keep drawing data from
 	// Switch to char32_t later, currently broken
+
+	PI_TokenList* tokenList;
 	
 
 }PI_Lexer;
@@ -27,8 +30,8 @@ typedef struct PI_LEXER_86 {
 PI_Lexer* initializeLexer(char* path);
 void advanceLexer(PI_Lexer* lex);
 void checkTokens(PI_Lexer* lex); // Change the return type on this to a list of tokens
-char peek(PI_Lexer* lex);
-char peekNext(PI_Lexer* lex);
-void cleanBuffer(PI_Lexer* lex); // Change the return type on this to a list of tokens
+// char peek(PI_Lexer* lex); Check for later use
+// char peekNext(PI_Lexer* lex); Check for later use
+void cleanBuffer(PI_Lexer* lex, char* F_Name, char* F_Value, int F_Id); // Change the return type on this to a list of tokens
 void freeLexer(PI_Lexer* lex);
 #endif LEXER_T
