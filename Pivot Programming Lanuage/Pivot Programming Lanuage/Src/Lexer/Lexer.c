@@ -1,13 +1,11 @@
 #include "Lexer.h"
 
-PI_Lexer* initializeLexer(char* path)
-{
+PI_Lexer* initializeLexer(char* path) {
     PI_Lexer* lex = (PI_Lexer*)malloc(sizeof(PI_Lexer));
     lex->lineCounter = 1;
     lex->columnCounter = 1;
     lex->codeBlockCounter = 0;
-    if (lex == NULL)
-    {
+    if (lex == NULL) {
         printf("[ LexerError : Couldnt Allocate Memory For Lexer ]\n");
         exit(0);
     }
@@ -30,8 +28,7 @@ PI_Lexer* initializeLexer(char* path)
     // Reading the contents of the file
     int counter = 0;
     char ch;
-    while ((ch = fgetc(fp)) != EOF)
-    {
+    while ((ch = fgetc(fp)) != EOF) {
         lex->codeBlock[counter] = ch;
         counter++;
     }
@@ -44,8 +41,7 @@ PI_Lexer* initializeLexer(char* path)
 	return lex;
 }
 
-PI_TokenList* startLexer(char* path)
-{
+PI_TokenList* startLexer(char* path) {
     PI_Lexer* lex = initializeLexer(path);
     checkTokens(lex);
     PI_TokenList* list = lex->tokenList;
@@ -53,15 +49,12 @@ PI_TokenList* startLexer(char* path)
     return list;
 }
 
-void advanceLexer(PI_Lexer* lex)
-{
-    if (lex->codeBlock[lex->codeBlockCounter+1] == '\n')
-    {
+void advanceLexer(PI_Lexer* lex) {
+    if (lex->codeBlock[lex->codeBlockCounter+1] == '\n') {
         lex->lineCounter++;
         lex->columnCounter = 1;
     }
-    else
-    {
+    else {
         lex->columnCounter++;
     }
 
@@ -71,12 +64,9 @@ void advanceLexer(PI_Lexer* lex)
     lex->currentCharacter = lex->codeBlock[++lex->codeBlockCounter];       
 }
 
-void checkTokens(PI_Lexer* lex)
-{
-    while (lex->codeBlockCounter < strlen(lex->codeBlock))
-    {
-        switch (lex->currentCharacter)
-        {
+void checkTokens(PI_Lexer* lex) {
+    while (lex->codeBlockCounter < strlen(lex->codeBlock)) {
+        switch (lex->currentCharacter) {
         case 'p':
         {
             if (strcmp(lex->currentWord, ""))
@@ -352,9 +342,7 @@ void checkTokens(PI_Lexer* lex)
         
 }
 
-void cleanBuffer(PI_Lexer* lex, char* F_Name, char* F_Value, int F_Id)
-{
-
+void cleanBuffer(PI_Lexer* lex, char* F_Name, char* F_Value, int F_Id) {
     if (F_Value == null)
         F_Value = "";
     if (F_Id == 20)
@@ -366,8 +354,7 @@ void cleanBuffer(PI_Lexer* lex, char* F_Name, char* F_Value, int F_Id)
     lex->currentWordLength = 0;
 }
 
-void freeLexer(PI_Lexer* lex, int freeTokensFlag)
-{
+void freeLexer(PI_Lexer* lex, int freeTokensFlag) {
     if (lex->codeBlock != null)
         free(lex->codeBlock);
     if (lex->currentWord != null)
@@ -378,5 +365,4 @@ void freeLexer(PI_Lexer* lex, int freeTokensFlag)
         freeTokenList(lex->tokenList);
     if (lex != null)
         free(lex);
-
 }
