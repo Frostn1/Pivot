@@ -322,6 +322,13 @@ void checkTokens(PI_Lexer* lex)
             advanceLexer(lex);
             cleanBuffer(lex,"SemiColon",null,T_SemiColon);
             break;
+        case ',':
+            if (strcmp(lex->currentWord, ""))
+                cleanBuffer(lex, "UserMade", lex->currentWord, T_UserMade);
+
+            advanceLexer(lex);
+            cleanBuffer(lex, "Comma", null, T_Comma);
+            break;
         case ' ':
             if (strcmp(lex->currentWord, ""))
                 cleanBuffer(lex, "UserMade", lex->currentWord, T_UserMade);

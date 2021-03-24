@@ -42,6 +42,7 @@ enum {
 	// Addtionals
 	T_Ampersand, // &
 	T_SemiColon, // ;
+	T_Comma, // ,
 
 
 	// Assign

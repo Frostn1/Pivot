@@ -1,4 +1,4 @@
-func main() {
+func () {
 	init num = hey;
 	num = 10;
 	init num1 = 20;

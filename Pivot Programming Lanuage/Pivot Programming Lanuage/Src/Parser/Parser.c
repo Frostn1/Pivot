@@ -21,8 +21,40 @@ void identifyTerms(PI_Parser* par) {
 				advanceParser(par);
 				if (par->currentToken->id == T_UserMade) {
 					// Good
-				}
-				else {
+					advanceParser(par);
+					if (par->currentToken->id == T_LParen) {
+						// Good
+						printf("success : left paren detected\n");
+						advanceParser(par);
+						while (par->currentToken->id == T_UserMade || par->currentToken->id == T_Comma) {
+							switch (par->currentToken->id) {
+							case T_UserMade:
+								printf("success : new param %d\n", par->currentToken->value);
+								break;
+							case T_Comma:
+								printf("success : comma detected\n");
+								break;
+							default:
+									break;
+							}
+						}
+
+						if (par->currentToken->id == T_RParen) {
+							// Good
+							printf("success : right paren detected\n");
+						}
+						else {
+							printf("error : missing right paren at %d %d", par->currentToken->line, par->currentToken->column);
+							freeParser(par);
+							exit(1);
+						}
+						
+					} else{
+						printf("error : missing left paren at %d %d", par->currentToken->line, par->currentToken->column);
+						freeParser(par);
+						exit(1);
+					}
+				} else {
 					// Bad
 					printf("error : missing function name at %d %d", par->currentToken->line, par->currentToken->column);
 					freeParser(par);
@@ -33,7 +65,10 @@ void identifyTerms(PI_Parser* par) {
 			}
 			case T_UserMade: {
 				//advanceParser(par);
-				if (isDefined(par, par->currentToken->value)) {
+				// TODO:
+				// Fix the function isDefined
+				// Was here before isDefined(par, par->currentToken->value)
+				if (1) {
 					// Good
 				}
 				else {
@@ -50,9 +85,7 @@ void identifyTerms(PI_Parser* par) {
 			}
 		}
 	}
-		
 			
-		
 }
 
 
