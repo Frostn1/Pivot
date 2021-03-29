@@ -1,0 +1,23 @@
+func print(number) {
+    number += 4;
+}
+/*base print(int num : {
+    return num + 1;
+})*/
+base get(int num : {
+    return num * 2;
+})
+base get(char chr : {
+    return chr + 1;
+})
+func main() {
+    init num = 3;
+    init let = 'a';
+    // print(num);
+    // >print(num);
+    num = get(int);
+    let = get(char);
+    print(num);
+    print(let);
+    return inf;
+}
