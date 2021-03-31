@@ -1,0 +1,15 @@
+===
+main-default-inf
+===
+
+func main() {
+	return inf;
+}
+
+---
+(source_file
+    (function_definition
+        (identifier)
+        (parameter_list)
+        (block
+        (return_statement (rune)))))

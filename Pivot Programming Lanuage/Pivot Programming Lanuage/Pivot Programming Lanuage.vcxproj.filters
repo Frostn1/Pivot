@@ -32,9 +32,6 @@
     <ClCompile Include="Src\Parser\Parser.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Testing\Version 0.0.1\Intial Parser Testing\Source.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Token\KnownTypes.h">

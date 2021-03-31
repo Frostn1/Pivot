@@ -146,7 +146,6 @@
     <ClCompile Include="Src\Lexer\Lexer.c" />
     <ClCompile Include="Src\Parser\Parser.c" />
     <ClCompile Include="Src\Token\Token.c" />
-    <ClCompile Include="Testing\Version 0.0.1\Intial Parser Testing\Source.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Additional\pch.h" />

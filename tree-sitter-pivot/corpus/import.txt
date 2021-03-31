@@ -1,0 +1,21 @@
+===
+import-default
+===
+
+import someModule from 'somefile.io'
+
+func main() {
+    return inf;
+}
+
+
+---
+(source_file
+    (import_definition
+        (identifier)
+        (string_literal))
+    (function_definition
+        (identifier)
+        (parameter_list)
+        (block
+        (return_statement (rune)))))

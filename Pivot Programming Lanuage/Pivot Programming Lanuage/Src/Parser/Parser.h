@@ -15,9 +15,5 @@ typedef struct PI_PARSER_86 {
 
 }PI_Parser;
 PI_Parser* initializeParser(PI_TokenList* list);
-void identifyTerms(PI_Parser* par); // Change the return type to { tbd } ?
-void advanceParser(PI_Parser* par);
-int isDefined(PI_Parser* par, char* name);
-void addToArray(PI_Parser* par, PI_Token* currentToken);
 void freeParser(PI_Parser* par);
 #endif // !PARSER_H

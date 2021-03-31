@@ -2,10 +2,10 @@
 void print(int number) {
     number += 4;
 }
-/*void* baseprint_0(int num) {
+void* baseprint_0(int num) {
     int _num = num + 1;
     return (void*)(_num);
-}*/
+}
 void baseget_0(int* num) {
     *num *= 2;
 }
@@ -13,9 +13,9 @@ void baseget_1(char* chr) {
     *chr += 1;
 }
 int main() {
-    int num = 3;
+    int num = 10;
     char let = 'a';
-    //printf("%d",(int*)(baseprint_0(num)));
+    printf("%d",(int*)(baseprint_0(num)));
     // print(num);
     scanf("%d",&num);
     baseget_0(&num);
