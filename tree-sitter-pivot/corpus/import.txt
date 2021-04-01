@@ -2,7 +2,7 @@
 import-default
 ===
 
-import someModule from 'somefile.io'
+import someModule from 'someFile.io'
 
 func main() {
     return inf;
@@ -13,9 +13,52 @@ func main() {
 (source_file
     (import_definition
         (identifier)
-        (string_literal))
+        (file_importion_rule))
     (function_definition
         (identifier)
         (parameter_list)
         (block
-        (return_statement (rune)))))
+        (return_statement (rune_literal)))))
+
+
+===
+import-only
+===
+
+import parser from 'parser.io'
+import lexer from 'parser.io'
+import car from 'cars.io'
+
+---
+(source_file
+    (import_definition
+        (identifier)
+        (file_importion_rule))
+    (import_definition
+        (identifier)
+        (file_importion_rule))
+    (import_definition
+        (identifier)
+        (file_importion_rule)))
+
+
+===
+import-reversed
+===
+
+func main() {
+    return inf;
+}
+
+import someCode from 'someCodeFunky.io'
+
+---
+(source_file
+    (function_definition
+        (identifier)
+        (parameter_list)
+        (block
+        (return_statement (rune_literal))))
+    (import_definition
+        (identifier)
+        (file_importion_rule)))

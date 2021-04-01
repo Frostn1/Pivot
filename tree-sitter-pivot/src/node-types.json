@@ -8,6 +8,14 @@
       "required": false,
       "types": [
         {
+          "type": "const_statment",
+          "named": true
+        },
+        {
+          "type": "init_statment",
+          "named": true
+        },
+        {
           "type": "return_statement",
           "named": true
         }
@@ -18,6 +26,41 @@
     "type": "boolean_literal",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "const_statment",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "integer_literal",
+          "named": true
+        },
+        {
+          "type": "rune_literal",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "function_definition",
@@ -43,9 +86,73 @@
     }
   },
   {
+    "type": "import_definition",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "file_importion_rule",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "init_statment",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        },
+        {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "identifier",
+          "named": true
+        },
+        {
+          "type": "integer_literal",
+          "named": true
+        },
+        {
+          "type": "rune_literal",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "parameter_list",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "return_statement",
@@ -64,11 +171,11 @@
           "named": true
         },
         {
-          "type": "number",
+          "type": "integer_literal",
           "named": true
         },
         {
-          "type": "rune",
+          "type": "rune_literal",
           "named": true
         },
         {
@@ -79,7 +186,7 @@
     }
   },
   {
-    "type": "rune",
+    "type": "rune_literal",
     "named": true,
     "fields": {}
   },
@@ -94,6 +201,10 @@
         {
           "type": "function_definition",
           "named": true
+        },
+        {
+          "type": "import_definition",
+          "named": true
         }
       ]
     }
@@ -102,6 +213,10 @@
     "type": "string_literal",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "\"",
+    "named": false
   },
   {
     "type": "'",
@@ -113,6 +228,10 @@
   },
   {
     "type": ")",
+    "named": false
+  },
+  {
+    "type": ",",
     "named": false
   },
   {
@@ -128,7 +247,23 @@
     "named": false
   },
   {
+    "type": "assignment",
+    "named": true
+  },
+  {
     "type": "bool",
+    "named": false
+  },
+  {
+    "type": "const",
+    "named": false
+  },
+  {
+    "type": "file_importion_rule",
+    "named": true
+  },
+  {
+    "type": "from",
     "named": false
   },
   {
@@ -140,7 +275,15 @@
     "named": true
   },
   {
+    "type": "import",
+    "named": false
+  },
+  {
     "type": "inf",
+    "named": false
+  },
+  {
+    "type": "init",
     "named": false
   },
   {
@@ -148,7 +291,7 @@
     "named": false
   },
   {
-    "type": "number",
+    "type": "integer_literal",
     "named": true
   },
   {

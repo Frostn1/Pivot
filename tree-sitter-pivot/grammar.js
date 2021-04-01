@@ -6,15 +6,17 @@ module.exports = grammar({
         
             _definition: $ => choice(
                 $.function_definition,
-                $.import_definition
+                $.import_definition,
                 // TODO: other kinds of definitions
             ),
             import_definition: $ => seq(
                 'import',
                 $.identifier,
-                'fro',
-                $.string_literal
+                'from',
+                $.file_importion_rule
             ),
+                
+            
             function_definition: $ => seq(
                 'func',
                 $.identifier,
@@ -22,10 +24,21 @@ module.exports = grammar({
                 $.block
             ),
         
-            parameter_list: $ => seq(
-                '(',
-                // TODO: parameters
-                ')'
+            parameter_list: $ => choice(
+                seq(
+                '(',')'
+                ),
+                seq(
+                    '(',
+                    $.identifier,
+                    ')'
+                ),
+                seq(
+                    '(',
+                    repeat(seq($.identifier,',')),
+                    $.identifier,
+                    ')'
+                )
             ),
         
             _type: $ => choice(
@@ -41,7 +54,8 @@ module.exports = grammar({
             ),
         
             _statement: $ => choice(
-                $.return_statement
+                $.return_statement,
+                $._variable_statement
                 // TODO: other kinds of statements
             ),
         
@@ -50,12 +64,34 @@ module.exports = grammar({
                 $._expression,
                 ';'
             ),
+
+            _variable_statement: $ => choice(
+                $.init_statment,
+                $.const_statment
+            ),
             
+            init_statment: $ => seq(
+                    'init',
+                    $.identifier,
+                    $.assignment,
+                    $._expression,
+                    ';'
+                    ),
+
+            const_statment: $ => seq(
+                'const',
+                $.identifier,
+                $.assignment,
+                $._expression,
+                ';'
+                ),
+
+            assignment: $ => '=',
             
             _expression: $ => choice(
                 $._literals,
                 $.identifier,
-                $.rune
+                $.rune_literal
                 // TODO: other kinds of expressions
             ),
 
@@ -94,9 +130,10 @@ module.exports = grammar({
                     ),
             
             boolean_literal: $ => choice("True", "False"),
-            identifier: $ => /[a-zA-Z0-9]+/,
+            identifier: $ => /[a-zA-Z]+/,
             integer_literal: $ => /\d+/,
-            file_path : $ => 'someFile.io'
+            file_importion_rule: $ => /'.*\.io'/,
+
                 
         }
 });
