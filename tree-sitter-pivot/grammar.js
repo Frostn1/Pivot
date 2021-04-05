@@ -17,13 +17,35 @@ module.exports = grammar({
             ),
                 
             
+            pre_definition: $ => seq(
+                'pre',
+                $.overidable_identifiers,
+                $.overiders_parameter_list,
+                $.block,
+                ')'
+            ),
             function_definition: $ => seq(
                 'func',
                 $.identifier,
                 $.parameter_list,
                 $.block
             ),
-        
+            
+            overiders_parameter_list: $ => choice(
+                seq(
+                    '(',
+                    $._type,
+                    $.identifier,
+                    ':'
+                ),
+                seq(
+                    '(',
+                    repeat(seq($._type,$.identifier,',')),
+                    $._type,
+                    $.identifier,
+                    ':'
+                )
+            ),
             parameter_list: $ => choice(
                 seq(
                 '(',')'
@@ -43,7 +65,8 @@ module.exports = grammar({
         
             _type: $ => choice(
                 'bool',
-                'int'
+                'int',
+                'char'
                 // TODO: other kinds of types
             ),
         
@@ -64,7 +87,10 @@ module.exports = grammar({
                 $._expression,
                 ';'
             ),
-
+            overidable_identifiers: $ => choice(
+                'print',
+                'get',
+            ),
             _variable_statement: $ => choice(
                 $.init_statment,
                 $.const_statment
@@ -137,4 +163,3 @@ module.exports = grammar({
                 
         }
 });
-

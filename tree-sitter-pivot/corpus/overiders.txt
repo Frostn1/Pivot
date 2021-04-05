@@ -1,0 +1,25 @@
+=========
+pre-testing
+=========
+
+pre print(int num : {
+    return num;
+})
+
+func main() {
+    return inf;
+}
+
+---
+(source_file
+    (pre_definition
+        (overidable_identifiers)
+        (overiders_parameter_list
+            (identifier))
+        (block
+            (return_statement (identifier)))))
+    (function_definition
+        (identifier)
+        (parameter_list)
+        (block
+            (return_statement (rune_literal)))))

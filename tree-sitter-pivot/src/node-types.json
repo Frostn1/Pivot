@@ -140,6 +140,26 @@
     }
   },
   {
+    "type": "overidable_identifiers",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "overiders_parameter_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "parameter_list",
     "named": true,
     "fields": {},
@@ -235,6 +255,10 @@
     "named": false
   },
   {
+    "type": ":",
+    "named": false
+  },
+  {
     "type": ";",
     "named": false
   },
@@ -255,6 +279,10 @@
     "named": false
   },
   {
+    "type": "char",
+    "named": false
+  },
+  {
     "type": "const",
     "named": false
   },
@@ -268,6 +296,10 @@
   },
   {
     "type": "func",
+    "named": false
+  },
+  {
+    "type": "get",
     "named": false
   },
   {
@@ -293,6 +325,14 @@
   {
     "type": "integer_literal",
     "named": true
+  },
+  {
+    "type": "pre",
+    "named": false
+  },
+  {
+    "type": "print",
+    "named": false
   },
   {
     "type": "return",
