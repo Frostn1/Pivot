@@ -1,5 +1,10 @@
 [
   {
+    "type": "assignment",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "block",
     "named": true,
     "fields": {},
@@ -12,7 +17,7 @@
           "named": true
         },
         {
-          "type": "init_statment",
+          "type": "let_statment",
           "named": true
         },
         {
@@ -41,6 +46,14 @@
         },
         {
           "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "const",
+          "named": true
+        },
+        {
+          "type": "float_literal",
           "named": true
         },
         {
@@ -75,6 +88,10 @@
           "named": true
         },
         {
+          "type": "const",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -105,7 +122,7 @@
     }
   },
   {
-    "type": "init_statment",
+    "type": "let_statment",
     "named": true,
     "fields": {},
     "children": {
@@ -121,6 +138,10 @@
           "named": true
         },
         {
+          "type": "float_literal",
+          "named": true
+        },
+        {
           "type": "identifier",
           "named": true
         },
@@ -129,31 +150,15 @@
           "named": true
         },
         {
+          "type": "let",
+          "named": true
+        },
+        {
           "type": "rune_literal",
           "named": true
         },
         {
           "type": "string_literal",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "overidable_identifiers",
-    "named": true,
-    "fields": {}
-  },
-  {
-    "type": "overiders_parameter_list",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "identifier",
           "named": true
         }
       ]
@@ -184,6 +189,10 @@
       "types": [
         {
           "type": "boolean_literal",
+          "named": true
+        },
+        {
+          "type": "float_literal",
           "named": true
         },
         {
@@ -219,11 +228,23 @@
       "required": false,
       "types": [
         {
+          "type": "const_statment",
+          "named": true
+        },
+        {
           "type": "function_definition",
           "named": true
         },
         {
           "type": "import_definition",
+          "named": true
+        },
+        {
+          "type": "let_statment",
+          "named": true
+        },
+        {
+          "type": "return_statement",
           "named": true
         }
       ]
@@ -263,16 +284,20 @@
     "named": false
   },
   {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": "=>",
+    "named": false
+  },
+  {
     "type": "False",
     "named": false
   },
   {
     "type": "True",
     "named": false
-  },
-  {
-    "type": "assignment",
-    "named": true
   },
   {
     "type": "bool",
@@ -284,22 +309,18 @@
   },
   {
     "type": "const",
-    "named": false
+    "named": true
   },
   {
     "type": "file_importion_rule",
     "named": true
   },
   {
+    "type": "float_literal",
+    "named": true
+  },
+  {
     "type": "from",
-    "named": false
-  },
-  {
-    "type": "func",
-    "named": false
-  },
-  {
-    "type": "get",
     "named": false
   },
   {
@@ -315,10 +336,6 @@
     "named": false
   },
   {
-    "type": "init",
-    "named": false
-  },
-  {
     "type": "int",
     "named": false
   },
@@ -327,12 +344,8 @@
     "named": true
   },
   {
-    "type": "pre",
-    "named": false
-  },
-  {
-    "type": "print",
-    "named": false
+    "type": "let",
+    "named": true
   },
   {
     "type": "return",

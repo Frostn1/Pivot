@@ -18,6 +18,10 @@
         {
           "type": "SYMBOL",
           "name": "import_definition"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_statement"
         }
       ]
     },
@@ -42,49 +46,36 @@
         }
       ]
     },
-    "pre_definition": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "pre"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "overidable_identifiers"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "overiders_parameter_list"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "block"
-        },
-        {
-          "type": "STRING",
-          "value": ")"
-        }
-      ]
-    },
     "function_definition": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "func"
+          "type": "SYMBOL",
+          "name": "const"
         },
         {
           "type": "SYMBOL",
           "name": "identifier"
         },
         {
+          "type": "STRING",
+          "value": "="
+        },
+        {
           "type": "SYMBOL",
           "name": "parameter_list"
         },
         {
+          "type": "STRING",
+          "value": "=>"
+        },
+        {
           "type": "SYMBOL",
           "name": "block"
+        },
+        {
+          "type": "STRING",
+          "value": ";"
         }
       ]
     },
@@ -290,25 +281,12 @@
         }
       ]
     },
-    "overidable_identifiers": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "print"
-        },
-        {
-          "type": "STRING",
-          "value": "get"
-        }
-      ]
-    },
     "_variable_statement": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "init_statment"
+          "name": "let_statment"
         },
         {
           "type": "SYMBOL",
@@ -316,12 +294,12 @@
         }
       ]
     },
-    "init_statment": {
+    "let_statment": {
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "init"
+          "type": "SYMBOL",
+          "name": "let"
         },
         {
           "type": "SYMBOL",
@@ -345,8 +323,8 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "STRING",
-          "value": "const"
+          "type": "SYMBOL",
+          "name": "const"
         },
         {
           "type": "SYMBOL",
@@ -390,6 +368,10 @@
     "_literals": {
       "type": "CHOICE",
       "members": [
+        {
+          "type": "SYMBOL",
+          "name": "float_literal"
+        },
         {
           "type": "SYMBOL",
           "name": "integer_literal"
@@ -506,15 +488,27 @@
     },
     "identifier": {
       "type": "PATTERN",
-      "value": "[a-zA-Z]+"
+      "value": "[a-zA-Z][a-zA-Z0-9]+"
     },
     "integer_literal": {
       "type": "PATTERN",
       "value": "\\d+"
     },
+    "float_literal": {
+      "type": "PATTERN",
+      "value": "[+-]?([0-9]*[.])?[0-9]+"
+    },
     "file_importion_rule": {
       "type": "PATTERN",
       "value": "'.*\\.io'"
+    },
+    "const": {
+      "type": "STRING",
+      "value": "const"
+    },
+    "let": {
+      "type": "STRING",
+      "value": "let"
     }
   },
   "extras": [

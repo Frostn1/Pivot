@@ -1,0 +1,53 @@
+====
+const-integer
+====
+
+const name = 1;
+
+---
+(source_file
+    (const_statment
+        (const)
+        (identifier)
+        (assignment)
+        (integer_literal)))
+
+====
+const-bool
+====
+
+const name = True;
+const name1 = False;
+
+---
+(source_file
+    (const_statment
+        (const)
+        (identifier)
+        (assignment)
+        (boolean_literal))
+    (const_statment
+        (const)
+        (identifier)
+        (assignment)
+        (boolean_literal)))
+
+====
+const-float
+====
+
+const name = 7.2;
+const name1 = 15.156;
+
+---
+(source_file
+    (const_statment
+        (const)
+        (identifier)
+        (assignment)
+        (float_literal))
+    (const_statment
+        (const)
+        (identifier)
+        (assignment)
+        (float_literal)))

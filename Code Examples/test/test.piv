@@ -1,7 +1,4 @@
-func print(number) {
-    number += 4;
-}
-base print(int num : {
+pre print(int num : {
     return num + 1;
 })
 base get(int num : {
@@ -13,10 +10,10 @@ base get(char chr : {
 func main() {
     init num = 3;
     init let = 'a';
-    //print(num);
+    print(num);
     //>print(num);
-    num = get(int);
-    let = get(char);
+    num = get();
+    let = get();
     print(num);
     print(let);
     return inf;

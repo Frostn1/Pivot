@@ -1,0 +1,25 @@
+{
+    "name": "Pivot",
+    "displayName": "Pivot Syntax Highlight",
+    "description": "A syntax highlighter for the pivot programming language and for .pi files",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.55.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "Pivot",
+            "aliases": ["Pivot", "Pivot"],
+            "extensions": [".pi"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "Pivot",
+            "scopeName": "source.pi",
+            "path": "./syntaxes/Pivot.tmLanguage.json"
+        }]
+    }
+}

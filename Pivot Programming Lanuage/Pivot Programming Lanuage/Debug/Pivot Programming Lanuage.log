@@ -1,0 +1,3 @@
+﻿  Parser.c
+D:\Programming\Projects\Pivot\Pivot Programming Lanuage\Pivot Programming Lanuage\Src\Parser\Parser.c(32,16): warning C4477: 'printf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'char *'
+  Pivot Programming Lanuage.vcxproj -> D:\Programming\Projects\Pivot\Pivot Programming Lanuage\Debug\Pivot Programming Lanuage.exe

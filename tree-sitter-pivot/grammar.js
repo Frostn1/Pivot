@@ -7,6 +7,7 @@ module.exports = grammar({
             _definition: $ => choice(
                 $.function_definition,
                 $.import_definition,
+                $._statement,
                 // TODO: other kinds of definitions
             ),
             import_definition: $ => seq(
@@ -17,18 +18,21 @@ module.exports = grammar({
             ),
                 
             
-            pre_definition: $ => seq(
+            /*pre_definition: $ => seq(
                 'pre',
                 $.overidable_identifiers,
                 $.overiders_parameter_list,
                 $.block,
                 ')'
-            ),
+            ),*/
             function_definition: $ => seq(
-                'func',
+                $.const,
                 $.identifier,
+                '=',
                 $.parameter_list,
-                $.block
+                '=>',
+                $.block,
+                ';'
             ),
             
             overiders_parameter_list: $ => choice(
@@ -87,17 +91,17 @@ module.exports = grammar({
                 $._expression,
                 ';'
             ),
-            overidable_identifiers: $ => choice(
+            /*overidable_identifiers: $ => choice(
                 'print',
                 'get',
-            ),
+            ),*/
             _variable_statement: $ => choice(
-                $.init_statment,
+                $.let_statment,
                 $.const_statment
             ),
             
-            init_statment: $ => seq(
-                    'init',
+            let_statment: $ => seq(
+                    $.let,
                     $.identifier,
                     $.assignment,
                     $._expression,
@@ -105,7 +109,7 @@ module.exports = grammar({
                     ),
 
             const_statment: $ => seq(
-                'const',
+                $.const,
                 $.identifier,
                 $.assignment,
                 $._expression,
@@ -123,8 +127,8 @@ module.exports = grammar({
 
             _literals: ($) =>
                     choice(
+                        $.float_literal,
                         $.integer_literal,
-                        // $.float_literal,
                         $.boolean_literal,
                         // $.null_literal,
                         // $.undefined_literal,
@@ -156,10 +160,12 @@ module.exports = grammar({
                     ),
             
             boolean_literal: $ => choice("True", "False"),
-            identifier: $ => /[a-zA-Z]+/,
+            identifier: $ => /[a-zA-Z][a-zA-Z0-9]+/,
             integer_literal: $ => /\d+/,
+            float_literal: $ => /[+-]?([0-9]*[.])?[0-9]+/,
             file_importion_rule: $ => /'.*\.io'/,
-
+            const: $ => 'const',
+            let: $ => 'let',
                 
         }
 });

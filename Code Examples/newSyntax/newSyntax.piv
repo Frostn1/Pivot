@@ -1,0 +1,12 @@
+const num = 1;
+let num1 = 10;
+const main = (arg) => {
+    out("Current Value " .. arg);
+};
+const serial = num + &num1;
+main(serial); // Current Value 11
+num1 = 15;
+main(serial); // Current Value 16
+
+const callList[] = (arg) => [main];
+callList(num);
