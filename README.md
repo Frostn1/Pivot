@@ -2,9 +2,9 @@
 - Pivot is a new dynamically built language with inbuilt functions.
 
 ## Pivot files
-Pivot files will be a plaing text with a special extension of `.io`.
+Pivot files will be a plaing text with a special extension of `.piv`.
 
-Code will be writted right into the file with a text editor of some sort, without any other outside Programs.
+Code will be writted right into the file with a text editor of some sort, without any other outside programs.
 
 ## Pivot's Grammer
 Pivot's grammar is {close} to C's grammer.
@@ -16,9 +16,6 @@ Pivot's grammar is {close} to C's grammer.
     }
     ```
 - Line endings will be specified with a `;`.
-
-Note that the return on the `main` function is to represent the amount of time in seconds the program should wait before exiting.
-
 
 ### Pivot's Data types
 As Pivot is a dynamic language with type deduction, these types will not be used to declare variables, only as a spec.
@@ -118,11 +115,11 @@ As Pivot is a dynamic language with type deduction, these types will not be used
             return inf;
         }
         ```
-- ### Modifiers
+- ### Modifiers : WIP
     Modifiers are tools used to change and read data in a different way and manipulate it into our needs.
     Such as :
     - `~`, Used for resetting data or a variable to zero or to blank values
-    - `&`, Used to get the memory address of a variable to change it in theh low level
+    - `&`, Used to get the memory address of a variable
     - `#`, Used for deep copying of a variable
 
     `Note: More modifiers will be featured in the future.`
