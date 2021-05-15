@@ -40,8 +40,8 @@ PIV_TOKEN_LIST* lexify(PIV_LEXER* lex) {
             newToken->name = (char*)malloc(sizeof(char)*strlen(IDEN));
             strcpy(newToken->name, IDEN);
             
-        } else if(isnumeric(show(lex))) {
-            while(isnumeric(advance(lex))) push(currentString, show(lex));
+        } else if(isdigit(show(lex))) {
+            while(isdigit(advance(lex))) push(currentString, show(lex));
             newToken->name = (char*)malloc(sizeof(char)*strlen(NUM));
             strcpy(newToken->name, NUM);
            

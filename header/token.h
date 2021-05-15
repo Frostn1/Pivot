@@ -1,10 +1,10 @@
 #ifndef TOKEN_H
 #define TOKEN_H
+#include <stdlib.h>
 
 #define IDEN "Identifier"
 #define NUM "Number"
 #define MAL "Other"
-
 typedef struct PIV_TOKEN {
     char* name;
     char* value;

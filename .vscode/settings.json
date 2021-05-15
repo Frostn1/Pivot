@@ -3,6 +3,8 @@
     "files.associations": {
         "*.eclip": "eclip",
         "*.piv": "Pivot",
-        "xstring": "cpp"
+        "xstring": "cpp",
+        "lexer.h": "c",
+        "tooling.h": "c"
     }
 }

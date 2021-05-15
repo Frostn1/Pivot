@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "token.h"
+#include "tooling.h"
 typedef struct PIV_LEXER {
     char* src; // Src Code
     char c; // Current Character
