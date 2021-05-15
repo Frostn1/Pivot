@@ -6,9 +6,3 @@
 
 ## Operators
 * =>
-* ->
-* <>
-* \>
-* *>
-
-fix fucking get
