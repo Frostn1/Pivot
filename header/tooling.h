@@ -2,8 +2,10 @@
 #ifndef TOOLING_H
 #define TOOLING_H
 #include <stdio.h>
+#include <stdlib.h>
 #include <ctype.h>
 #include <io.h>
+#include <string.h>
 #define DARK_GRAY 30
 #define RED 31
 #define WHITE 37

@@ -1,14 +1,34 @@
-pi: main.o token.o lexer.o
-	gcc main.o token.o lexer.o -o pi
+CC_NO_VERBOSE = @echo "Building $@..."; $(CC)
 
-main.o: ./src/main.c
-	gcc -c ./src/main.c 
+ifeq ($(VERBOSE),YES)
+  V_CC = $(CC_VERBOSE)
+  AT := 
+else
+  V_CC = $(CC_NO_VERBOSE)
+  AT := @
+endif
 
-token.o: ./src/token.c
-	gcc -c ./src/token.c
+C_FILES = $(wildcard src/*.c)
+O_FILES = $(C_FILES:src/%.c=build/%.o)
 
-lexer.o: ./src/lexer.c
-	gcc -c ./src/lexer.c
-	
+.PHONY: all clean
+.DEFAULT: all
+
+all: pi
+
+pi: $(O_FILES)
+	gcc -o $@ $^
+
+build:
+	$(AT)mkdir -p build
+
+build/%.o: src/%.c | build
+	gcc -c $< -o $@
+
 clean:
-	rm *.o *.exe
+	@echo Removing object files
+	$(AT)-rm -f $(O_FILES)
+	@echo Removing application
+	$(AT)-rm -f program
+	@echo Removing build directory
+	$(AT)-rm -rf build

@@ -10,8 +10,9 @@ int isIdentifier(char let) {
 
 void push(char* string, char letter) {
     int length = strlen(string);
-    string = (char*)realloc(string, (sizeof(char)*length)+sizeof(char));
-    string[length+1] = letter;
+    string = (char*)realloc(string, (sizeof(char) * length) + sizeof(char) * 2);
+    string[length] = letter;
+    string[length+1] = '\0';
 }
 
 int isSpace(char let) {
@@ -34,16 +35,17 @@ char* readFile(char* filePath) {
 
     // if (argc - 1 == flags.size()) throwError("missing file input");
     // if (i != argc - 1) throwError("arguments order is misaligned");
-    if (_access(filePath, 0) == -1) throwError("file doesn't exist"); 
+    if (_access(filePath, 0) == -1) throwError("file doesn't exist."); 
     FILE* filePointer = fopen(filePath,"r");
     if (!filePointer) throwError("can't open file");
-    
-    char c = ' ';
-    char* code = (char*)malloc(sizeof(char));
-    int length = 1;
-    while((c = getc(filePointer) != EOF)) {
-        code = (char*)realloc(code, sizeof(char)*length + sizeof(char));
-        code[length-1] = c;
-    }
-    return code;
+    char *buffer = NULL;
+    int string_size = 0, read_size = 0;
+    fseek(filePointer, 0, SEEK_END);
+    string_size = ftell(filePointer);
+    fseek(filePointer, 0, SEEK_SET);
+    buffer = (char*) malloc(sizeof(char) * (string_size + 1) );
+    read_size = fread(buffer, sizeof(char), string_size, filePointer);
+    buffer[string_size] = '\0';
+    fclose(filePointer);
+    return buffer;
 }
