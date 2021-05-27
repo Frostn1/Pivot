@@ -19,4 +19,5 @@ char show(PIV_LEXER* lex);
 char peek(PIV_LEXER* lex);
 char peekAhead(PIV_LEXER* lex);
 PIV_TOKEN_LIST* lexify();
+void freeLexer(PIV_LEXER* lex);
 #endif // !LEXER_H

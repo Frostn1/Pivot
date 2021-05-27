@@ -22,8 +22,9 @@
 
 void c(int color);
 int isIdentifier(char let);
-void push(char* string, char letter);
+void push(char* string,int length, char letter);
 int isSpace(char let);
+int isNewLine(char let);
 void throwError(char* message);
 char* readFile(char* filePath);
 

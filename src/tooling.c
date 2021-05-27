@@ -8,15 +8,19 @@ int isIdentifier(char let) {
     return isalpha(let) || isdigit(let) ? 1 : 0;
 }
 
-void push(char* string, char letter) {
-    int length = strlen(string);
-    string = (char*)realloc(string, (sizeof(char) * length) + sizeof(char) * 2);
+void push(char* string,int length, char letter) {
+    if(letter == '\n') return;
+    string = (char*)realloc(string, (sizeof(char) * (length+1)) + sizeof(char));
     string[length] = letter;
     string[length+1] = '\0';
 }
 
 int isSpace(char let) {
     return let == 32;
+}
+
+int isNewLine(char let) {
+    return let == 11;
 }
 
 void throwError(char* message) {

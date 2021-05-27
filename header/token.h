@@ -16,4 +16,6 @@ typedef struct PIV_TOKEN_LIST {
 }PIV_TOKEN_LIST;
 
 void pushToken(PIV_TOKEN_LIST* tokenList, PIV_TOKEN* token);
+void freeToken(PIV_TOKEN* toke);
+void freeTokenList(PIV_TOKEN_LIST* tokenList);
 #endif // !TOKEN_H

@@ -20,5 +20,7 @@ int main(int argc, char** argv) {
     for(int i = 0; i < tokenList->amount; i++) {
         printf("%s : %s\n", tokenList->tokenList[i]->name, tokenList->tokenList[i]->value);
     }
+    freeLexer(lex);
+    freeTokenList(tokenList);
     return 0;
 }
