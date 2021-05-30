@@ -1,19 +1,12 @@
-#include "../header/token.h"
+#include "../include/token.h"
+#include <stdlib.h>
 
-void pushToken(PIV_TOKEN_LIST* tokenList, PIV_TOKEN* token) {
-    tokenList->tokenList = (PIV_TOKEN**)realloc(tokenList->tokenList,sizeof(PIV_TOKEN)*tokenList->amount + sizeof(PIV_TOKEN));
-    tokenList->tokenList[tokenList->amount] = (PIV_TOKEN*)malloc(sizeof(PIV_TOKEN));
-    tokenList->tokenList[tokenList->amount++] = token;
-}
 
-void freeToken(PIV_TOKEN* toke) {
-    free(toke->name);
-    free(toke->value);
-    free(toke);
-}
+token_T* init_token(int type, char* value)
+{
+    token_T* token = calloc(1, sizeof(struct TOKEN_STRUCT));
+    token->type = type;
+    token->value = value;
 
-void freeTokenList(PIV_TOKEN_LIST* tokenList) {
-    for(int i = 0; i < tokenList->amount; i++) freeToken(tokenList->tokenList[i]);
-    free(tokenList->tokenList);
-    free(tokenList);
+    return token;
 }

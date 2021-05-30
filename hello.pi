@@ -1,0 +1,4 @@
+const add = (arg1,arg2) => {
+    return arg1 + arg2;
+};
+out(add(13,8));

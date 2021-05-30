@@ -1,4 +1,4 @@
-#include "../header/tooling.h"
+#include "../include/tooling.h"
 
 void c(int color) {
     printf("\033[0;%d;%dm",color,1);
@@ -37,19 +37,19 @@ void throwError(char* message) {
 
 char* readFile(char* filePath) {
 
+    
     // if (argc - 1 == flags.size()) throwError("missing file input");
     // if (i != argc - 1) throwError("arguments order is misaligned");
     if (_access(filePath, 0) == -1) throwError("file doesn't exist."); 
     FILE* filePointer = fopen(filePath,"r");
     if (!filePointer) throwError("can't open file");
-    char *buffer = NULL;
-    int string_size = 0, read_size = 0;
+    char* buffer = 0;
+    long length;
     fseek(filePointer, 0, SEEK_END);
-    string_size = ftell(filePointer);
+    length = ftell(filePointer);
     fseek(filePointer, 0, SEEK_SET);
-    buffer = (char*) malloc(sizeof(char) * (string_size + 1) );
-    read_size = fread(buffer, sizeof(char), string_size, filePointer);
-    buffer[string_size] = '\0';
+    buffer = calloc(length, length);
+    if (buffer) fread(buffer, 1, length, filePointer);
     fclose(filePointer);
     return buffer;
 }

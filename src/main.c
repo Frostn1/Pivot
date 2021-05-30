@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "../header/lexer.h"
-#include "../header/token.h"
-#include "../header/tooling.h"
+#include "../include/lexer.h"
+#include "../include/token.h"
+#include "../include/tooling.h"
 
 int main(int argc, char** argv) {
     if(argc < 2) {
@@ -13,14 +13,26 @@ int main(int argc, char** argv) {
         c(NATRUAL);
         return 1;
     }
-    
-    PIV_LEXER* lex = intLexer(readFile(argv[argc - 1]));
-    PIV_TOKEN_LIST* tokenList = lexify(lex);
-    printf("\nToken List:\n");
-    for(int i = 0; i < tokenList->amount; i++) {
-        printf("%s : %s\n", tokenList->tokenList[i]->name, tokenList->tokenList[i]->value);
+    for(int i = 1; i < argc; i++) {
+        int len = strlen(argv[i]);
+        char* last_two = &argv[i][len-3];
+        if(strcmp(last_two,".pi") == 0) {
+            lexer_T* lexer = init_lexer(readFile(argv[i]));
+            // parser_T* parser = init_parser(lexer);
+            // AST_T* root = parser_parse(parser, parser->scope);
+            // visitor_T* visitor = init_visitor();
+            // visitor_visit(visitor, root);
+            printf("%s",lexer->contents);
+        } else {
+            c(ERROR);
+            printf("Usage %s", last_two);
+            c(BOLD);
+            printf(": ");
+            printf("pi [OPTION]... PATTERNS [FILE]...\nTry 'pi --help' for more information.\n");
+            c(NATRUAL);
+        }
     }
-    freeLexer(lex);
-    freeTokenList(tokenList);
+    
+    
     return 0;
 }
