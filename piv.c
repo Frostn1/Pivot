@@ -2,10 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define MAX_LENGTH 32
 #define OR ||
 #define AND &&
 #define FLAG_SPOT 1
 #define HELP_FLAG "-h"
+
+
 void __USAGE__(void);
 void __HELP__(void);
 
@@ -13,7 +16,8 @@ void __ENCODE__(int size, char** data);
 void __DECODE__(int size, char** data);
 void __SHIFT__(int size, char** data);
 
-
+void _TO_BINARY_(int size, char* dataStream);
+char* _FLATTEN2D_(int size, char** stream);
 void __HELP__(void) {
     __USAGE__();
     printf("Pivot\n\nSyntax\n`piv -operation addtional_info data`.\n`data` -> data in requested type.\n");
@@ -25,6 +29,23 @@ void __USAGE__(void) {
     printf("Usage:\n");
     printf("piv -operation addtional_info data\n");
     return;
+}
+
+void __TO_BINARY__(int size, char* dataStream) {
+    for (size_t i = 0; i < strlen(dataStream); i++) {
+        for (int j = 7; j >= 0; --j) {
+            putchar( (dataStream[i] & (1 << j)) ? '1' : '0' );
+        }
+    }
+    putchar('\n');   
+}
+
+char* _FLATTEN2D_(int size, char** stream) {
+    char *flatArray = (char*)malloc(sizeof(char) * MAX_LENGTH * 1100);
+    flatArray[0] = 0;
+    for(int i=0; i<size; i++)
+        strcat(flatArray, stream[i]);
+    return flatArray;
 }
 
 int main(int argc, char** argv) {
@@ -49,3 +70,22 @@ int main(int argc, char** argv) {
     
     return 0;
 }
+
+
+void __ENCODE__(int size, char** data) {
+    switch(data[FLAG_SPOT+1][FLAG_SPOT]) {
+        case 'b':
+            __TO_BINARY__(size - 3, _FLATTEN2D_(size-3, data[3]));
+    }
+}
+
+
+void __DECODE__(int size, char** data) {
+
+}
+
+
+void __SHIFT__(int size, char** data) {
+
+}
+
