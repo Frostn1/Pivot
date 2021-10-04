@@ -1,9 +1,24 @@
-# _Pivot_
-- Pivot is a new dynamically built language with inbuilt functions.
+# Pivot
 
-## Pivot files
-Pivot files will be a plaing text with a special extension of `.piv`.
+## Syntax
+`piv -operation addtional_info data`.
 
-Code will be writted right into the file with a text editor of some sort, without any other outside Programs.
+`data` -> data in requested type.
+### Operations
+- -s shift from one type to another
+- -e encode raw data to a type
+- -d decode type to raw data
+- -h prints help screen
 
-## Pivot's Grammer
+### Types ( Addtional_info )
+[ ] `b` . binary
+
+[ ] `o` . octa
+
+[ ] `h` . hexadecimal
+
+[ ] `d` . decimal
+
+[ ] `raw` . normal text
+
+[ ] `b64` . base64

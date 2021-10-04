@@ -1,4 +1,0 @@
-const num1 = 7;
-const num2 = 5;
-const output = num1 + num2;
-out(output); // 12
