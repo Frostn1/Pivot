@@ -16,8 +16,11 @@ void __ENCODE__(int size, char** data);
 void __DECODE__(int size, char** data);
 void __SHIFT__(int size, char** data);
 
+void _FROM_BINARY_(int size, char* dataStream);
 void _TO_BINARY_(int size, char* dataStream);
 char* _FLATTEN2D_(int size, char** stream);
+
+
 void __HELP__(void) {
     __USAGE__();
     printf("Pivot\n\nSyntax\n`piv -operation addtional_info data`.\n`data` -> data in requested type.\n");
@@ -31,13 +34,30 @@ void __USAGE__(void) {
     return;
 }
 
-void __TO_BINARY__(int size, char* dataStream) {
+void _TO_BINARY_(int size, char* dataStream) {
     for (size_t i = 0; i < strlen(dataStream); i++) {
         for (int j = 7; j >= 0; --j) {
             putchar( (dataStream[i] & (1 << j)) ? '1' : '0' );
         }
     }
     putchar('\n');   
+}
+
+void _FROM_BINARY_(int size, char* dataStream) {
+    int counter = 0;
+    char newStream[8];
+    for (size_t i = 0; i < strlen(dataStream); i++, counter++) {
+        if (counter == 8) {
+            newStream[8] = 0;
+            printf("%s\n", newStream);
+            putchar(strtol(newStream, 0, 2));
+            counter = -1;
+        } else {
+            newStream[counter] = dataStream[i];
+        }
+        
+    }
+    putchar('\n');
 }
 
 char* _FLATTEN2D_(int size, char** stream) {
@@ -76,13 +96,18 @@ int main(int argc, char** argv) {
 void __ENCODE__(int size, char** data) {
     switch(data[FLAG_SPOT+1][0]) {
         case 'b':
-            __TO_BINARY__(size - 3, _FLATTEN2D_(size-3, &data[3]));
+            _TO_BINARY_(size - 3, _FLATTEN2D_(size-3, &data[3]));
+            break;
     }
 }
 
 
 void __DECODE__(int size, char** data) {
-
+    switch(data[FLAG_SPOT+1][0]) {
+        case 'b':
+            _FROM_BINARY_(size - 3, _FLATTEN2D_(size-3, &data[3]));
+            break;
+    }
 }
 
 
