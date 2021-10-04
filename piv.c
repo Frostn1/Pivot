@@ -45,6 +45,7 @@ char* _FLATTEN2D_(int size, char** stream) {
     flatArray[0] = 0;
     for(int i=0; i<size; i++)
         strcat(flatArray, stream[i]);
+        strcat(flatArray, " ");
     return flatArray;
 }
 
@@ -73,9 +74,9 @@ int main(int argc, char** argv) {
 
 
 void __ENCODE__(int size, char** data) {
-    switch(data[FLAG_SPOT+1][FLAG_SPOT]) {
+    switch(data[FLAG_SPOT+1][0]) {
         case 'b':
-            __TO_BINARY__(size - 3, _FLATTEN2D_(size-3, data[3]));
+            __TO_BINARY__(size - 3, _FLATTEN2D_(size-3, &data[3]));
     }
 }
 
